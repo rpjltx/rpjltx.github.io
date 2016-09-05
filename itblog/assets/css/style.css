@@ -73,3 +73,7 @@ a {
 .share-list a {
 	color: #666;
 }
+
+.share-list a:hover {
+	color: #005f3c;
+}
