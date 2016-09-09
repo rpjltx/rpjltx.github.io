@@ -27,15 +27,15 @@
     <footer class="site-footer" style="text-align:center;">
         <div class="share">
             <ul class="share-list">
-                <li><a href="" target="_blank"><i class="fa fa-weixin" aria-hidden="true"></i></a></li>
-                <li><a href="https://twitter.com/renpingjun" target="_blank"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
-                <li><a href="" target="_blank"><i class="fa fa-facebook-official" aria-hidden="true"></i></a></li>
-                <li><a href="https://rpjltx.github.io/" target="_blank"><i class="fa fa-github" aria-hidden="true"></i></a></li>
-                <li><a href="https://weibo.com/renpingjun" target="_blank"><i class="fa fa-weibo" aria-hidden="true"></i></a></li>
+                <li><a href=""><i class="fa fa-weixin" aria-hidden="true"></i></a></li>
+                <li><a href="https://twitter.com/renpingjun"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
+                <li><a href=""><i class="fa fa-facebook-official" aria-hidden="true"></i></a></li>
+                <li><a href="https://rpjltx.github.io/"><i class="fa fa-github" aria-hidden="true"></i></a></li>
+                <li><a href="https://weibo.com/renpingjun"><i class="fa fa-weibo" aria-hidden="true"></i></a></li>
             </ul>
         </div>
         <div class="copyright">
-            Copyright © 2016&nbsp;<strong><a href="https://rpjltx.github.io/" target="_blank">仁平君</a></strong> All Rights Reversed.
+            Copyright © 2016&nbsp;<strong><a href="https://rpjltx.github.io/">仁平君</a></strong> All Rights Reversed.
         </div><a href="'+http:baidu.com+'"></a>
     </footer>
     
@@ -49,9 +49,9 @@
                 success:function(data){
                     var html;
                     for (var i = 0; i < data.length; i++) {
-                        html += '<li><a href="'+data[i].url+'" target="_blank"><div class="thumbnail"><img src="'+data[i].img+'" alt="'+data[i].title+'" /></div><div class="info"><h3 class="title">'+data[i].title+'</h3><p class="intro">'+data[i].intro+'</p><p class="time">'+data[i].time+'</p></div></a></li>'
+                        html += '<li><a href="'+data[i].url+'"><div class="thumbnail"><img src="'+data[i].img+'" alt="'+data[i].title+'" /></div><div class="info"><h3 class="title">'+data[i].title+'</h3><p class="intro">'+data[i].intro+'</p><p class="time">'+data[i].time+'</p></div></a></li>'
                     }; 
-                    $('.article-list').html('').append(html);
+                    $('.article-list').append(html);
                 },
                 error:function(data){
                     alert('数据加载失败，请重试。。。');
