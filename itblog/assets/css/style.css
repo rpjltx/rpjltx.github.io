@@ -17,6 +17,7 @@ a {
 	margin: 30px auto;
 }
 
+
 @media screen and (max-width: 42em) {
   .article-list li {
 	margin-left: 14px;
