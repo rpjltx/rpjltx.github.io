@@ -7,10 +7,8 @@
     <meta name="keyword" content="仁平君,仁平君临天下,前端,前端开发,web开发,HTML5,jQuery,Angular,React">
     <meta name="description" content="终南山下，汉水之滨。仁平君者，独步武林。| 你有故事和酒，而我除了帅什么都没有。">
     <link href="https://cdn.bootcss.com/font-awesome/4.6.3/css/font-awesome.min.css" rel="stylesheet">
-    <link href="https://cdn.bootcss.com/fullPage.js/2.8.5/jquery.fullPage.min.css" rel="stylesheet">
+    
     <link rel="stylesheet" type="text/css" href="./assets/css/style.css">
-    <link rel="stylesheet" type="text/css" href="../stylesheets/stylesheet.css" media="screen">
-    <link rel="shortcut icon" href="../favicon.ico">
 </head>
 
 <body>
@@ -21,7 +19,9 @@
     </header>
     
     <article class="page-content">
-        <ul class="article-list"></ul>
+        <ul class="article-list">
+           
+        </ul>
     </article>
     
     <footer class="site-footer" style="text-align:center;">
@@ -40,7 +40,6 @@
     </footer>
     
     <script src="https://cdn.bootcss.com/jquery/3.1.0/jquery.min.js"></script>
-    <script src="https://cdn.bootcss.com/fullPage.js/2.8.5/jquery.fullPage.min.js"></script>
     <script>
         $(function(){
             $.ajax({
@@ -48,8 +47,8 @@
                 type: "GET",
                 success:function(data){
                     var html = [];
-                    for (var i = 0; i < data.length; i++) {
-                        html += '<li><a href="'+data[i].url+'"><div class="thumbnail"><img src="'+data[i].img+'" alt="'+data[i].title+'" /></div><div class="info"><h3 class="title">'+data[i].title+'</h3><p class="intro">'+data[i].intro+'</p><p class="time">'+data[i].time+'</p></div></a></li>'
+                    for (var i = 0; i < 8; i++) {
+                        html += '<a href="http://www.baidu.com"><li class="thumbnail" data-title="'+data[i].title+'" data-description="'+data[i].intro+'"><img src="'+data[i].img+'" alt="'+data[i].title+'" width="300" height="400"></li></a>'
                     }; 
                     $('.article-list').append(html);
                 },

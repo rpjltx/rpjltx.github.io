@@ -1,9 +1,9 @@
 [
 	{
 		"img":"assets/images/1.jpg",
-		"url":"https://baidu.com",
-		"title":"人人都会的35个Jquery小技巧",
-		"intro":"收集的35个 jQuery 小技巧/代码片段，可以帮你快速开发.1.禁止右键点击$(document).ready(function(){$(document).bind(contextmenu,function(e){return false;隐藏搜索文本框文字",
+		"url":"p2016090901.html",
+		"title":"从一行代码里面学点 JavaScript",
+		"intro":"从一行代码里面学点JavaScript，现如今，JavaScript无处不在，因此关于JavaScript的新知识也是层出不穷。JavaScript的特点在于，要学习它的语法入门简简单，但是要精通使用它的方式却是一件不容易的事。",
 		"time":"2016/09/09"
 	},{
 		"img":"assets/images/1.jpg",
