@@ -521,11 +521,13 @@ article a {
 }
 article:not(:first-child):before {
   content: '';
-  width: 100%;
+  width: 150px;
   height: 1px;
   background-color: #e0e0e0;
   position: absolute;
   top: 0;
+  left: 50%;
+  margin-left: -75px;
 }
 article blockquote {
   margin: 6rem 2rem;
