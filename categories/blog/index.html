@@ -1,91 +1,135 @@
-<!DOCTYPE HTML>
+<!DOCTYPE html>
 <html>
 <head>
   <meta charset="utf-8">
   
-  <title>blog | Renpingju | 你有故事和酒，而我除了帅什么都没有。</title>
-  
-  <meta name="author" content="renpingjun">
-  
-  
-  <meta name="description" content="Open your API to change the internet, open your mind to change the world.">
+  <title>Category: blog | 仁平君 | 你有故事和酒，而我除了帅什么都没有。</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
   
   <meta name="keywords" content="Renpingju,仁平君,hexo,终南山下,汉水之滨,仁平君者,独步武林">
+  <meta name="description" content="Open your API to change the internet, open your mind to change the world.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="仁平君">
+<meta property="og:url" content="renpingjun.cn/categories/blog/index.html">
+<meta property="og:site_name" content="仁平君">
+<meta property="og:description" content="Open your API to change the internet, open your mind to change the world.">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="仁平君">
+<meta name="twitter:description" content="Open your API to change the internet, open your mind to change the world.">
   
-  <meta id="viewport" name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black">
-  <link href="/favicon.ico" rel="icon">
-  <link rel="alternate" href="/atom.xml" title="Renpingju" type="application/atom+xml">
-  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <meta name="summary" content="Open your API to change the internet, open your mind to change the world.">
+  <link rel="shortcut icon" href="/">
+  <link rel="stylesheet" href="/css/style.css">
 </head>
 
-
 <body>
-<div class="blog">
-  <div class="content">
+  <div id="loading" class="active"></div>
 
-    <header>
-  <div class="site-branding">
-    <h1 class="site-title">
-      <a href="/">Renpingju</a>
-    </h1>
-    <p class="site-description">你有故事和酒，而我除了帅什么都没有。</p>
+  <nav id="menu"  >
+   <div class="inner flex-row-vertical">
+  <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+      <i class="icon icon-lg icon-close"></i>
+  </a>
+  <div class="brand-wrap">
+    <div class="brand">
+      <a href="/" class="avatar"><img src="undefined"></a>
+      <hgroup class="introduce">
+        <h5 class="nickname">renpingjun</h5>
+        <a href="mailto:ganrenping@gmail.com" title="ganrenping@gmail.com" class="mail">ganrenping@gmail.com</a>
+      </hgroup>
+    </div>
   </div>
-  <nav class="site-navigation">
-    <ul>
-      
-        <li><a href="/">主頁</a></li>
-      
-        <li><a href="/archives">歸檔</a></li>
-      
-        <li><a href="/categories">分類</a></li>
-      
-        <li><a href="/tags">標籤</a></li>
+  <div class="scroll-wrap flex-col">
+    <ul class="nav">
       
     </ul>
-  </nav>
-</header>
 
-    <main class="site-main posts-loop">
-    
-
-<article>
-
-  <h2 class="article-title  category">blog</h2>
-
-  <div class="archive">
-    
-      <div class="post archive">
-        <div class="archive-post">
-          <time datetime="2017-03-12T13:59:00.000Z">
-            <a href="/2017/03/12/How-to-Build-Your-Personal-Blog-in-Half-an-Hour/">2017-03-12</a>
-          </time>
-          
-            <h3 class="archive-title"><a href="/2017/03/12/How-to-Build-Your-Personal-Blog-in-Half-an-Hour/"><span>How to Build Your Personal Blog in Half an Hour ?</span></a></h3>
-          
-        </div>
-      </div>
-    
-    <nav class="pagination">
-  
-  
-</nav>
-  </div>
-
-</article>
-    </main>
-
-    <footer class="site-footer">
-  <p class="site-info">
-    
-    &copy; 2017 renpingjun All Rights Reserved.
-    
-  </p>
+    <footer class="footer">
+  <p><a rel="license" target="_blank" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0;vertical-align:middle;" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFAAAAAPCAMAAABEF7i9AAAAllBMVEUAAAD///+rsapERER3d3eIiIjMzMzu7u4iIiKUmZO6v7rKzsoODg4RERFVVVUNDQ0NDg0PEA8zMzNLTEtbXltmZmZydnF9gn2AgICPkI+ZmZmqqqq7u7vFxsXIzMgNDQwZGRkgICAhISEkJSMnKCcuMC4xMzE5Ozk7PTtBQkFCQkJDQ0Nna2eGhoaHh4ezuLLGysbd3d1wVGpAAAAA4UlEQVR42q2T1xqCMAyFk7QsBQeKA9x7j/d/OSm22CpX0nzcpA1/T05aAOuBVkMAScQFHLnEwoCo2f1TnQIGoVMewjZEjVFN4GH1Ue1Cn2jWqwfsOOj6wDwGvotsl/c8lv7KIq1eLOsT0HMFHMIE/RZyHnlphryT9zyV+8WH5e8yQw3wnQvgAFxPTKUVi555SHR/lOfLMgVTeDlSfN+TaoUsiTyeIm+bCkHvCA2FUKG48LDtYBZBknsYP/G8NTw0gaaHyuQf4H5pecrB/FYCT2sL9zAfy1Xyjou6L8X2W7YcLyBZCRtnq/zfAAAAAElFTkSuQmCC" /></a></p>
+  <p>仁平君 &copy; 2017</p>
+  <p>Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme
+  <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a></p>
+  <a href="undefined" target="_blank" class="rss" title="rss"><i class="icon icon-2x icon-rss-square"></i></a>
 </footer>
-    
+
   </div>
 </div>
+
+  </nav>
+  <main id="main">
+    <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">仁平君</div>
+        
+        
+    </div>
+</header>
+<header class="content-header">
+  <div class="container">
+    <h1 class="author">仁平君</h1>
+    <h5 class="subtitle">
+        
+        你有故事和酒，而我除了帅什么都没有。
+        
+    </h5>
+  </div>
+</header>
+
+    <div class="container body-wrap">
+      
+
+
+        <h3 class="archive-separator">March, 2017</h3>
+
+
+
+     <article class="archive-article">
+  <div class="archive-article-date">
+    <time datetime="2017-03-12T13:59:00.000Z" itemprop="datePublished" class="post-time">
+  Mar 12
+</time>
+
+  </div>
+  <div class="archive-article-inner">
+    
+
+
+  
+    <h3 class="post-title" itemprop="name">
+      <a class="post-title-link" href="/2017/03/12/How-to-Build-Your-Personal-Blog-in-Half-an-Hour/">How to Build Your Personal Blog in Half an Hour ?</a>
+    </h3>
+  
+
+
+
+    
+  </div>
+</article>
+
+
+
+
+    </div>
+  </main>
+<div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+<script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+
+<script src="/js/main.js"></script>
+
+
+
+
+
+
+
+
+
+
 </body>
 </html>

@@ -1,151 +1,180 @@
-<!DOCTYPE HTML>
+<!DOCTYPE html>
 <html>
 <head>
   <meta charset="utf-8">
   
-  <title>函数绑定 | Renpingju | 你有故事和酒，而我除了帅什么都没有。</title>
-  
-  <meta name="author" content="renpingjun">
-  
-  
-  <meta name="description" content="Open your API to change the internet, open your mind to change the world.">
+  <title>函数绑定 | 仁平君 | 你有故事和酒，而我除了帅什么都没有。</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   
   
-  <meta name="keywords" content="Renpingju,仁平君,hexo,终南山下,汉水之滨,仁平君者,独步武林">
+  <meta name="keywords" content="javascript">
+  <meta name="description" content="函数绑定需要创建一个函数，可以在特定的this环境中以指定参数调用另一个函数，常和回调函数、事件处理程序一起使用，以便在将函数作为变量传递的同时不改变函数执行环境。
+我们来看下面这个例子：
+1234567891011121314151617181920212223242526272829303132333435var lottery = &amp;#123;       dialog: &amp;#123;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="函数绑定">
+<meta property="og:url" content="renpingjun.cn/2017/03/13/函数绑定/index.html">
+<meta property="og:site_name" content="仁平君">
+<meta property="og:description" content="函数绑定需要创建一个函数，可以在特定的this环境中以指定参数调用另一个函数，常和回调函数、事件处理程序一起使用，以便在将函数作为变量传递的同时不改变函数执行环境。
+我们来看下面这个例子：
+1234567891011121314151617181920212223242526272829303132333435var lottery = &amp;#123;       dialog: &amp;#123;">
+<meta property="og:updated_time" content="2017-03-13T14:19:57.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="函数绑定">
+<meta name="twitter:description" content="函数绑定需要创建一个函数，可以在特定的this环境中以指定参数调用另一个函数，常和回调函数、事件处理程序一起使用，以便在将函数作为变量传递的同时不改变函数执行环境。
+我们来看下面这个例子：
+1234567891011121314151617181920212223242526272829303132333435var lottery = &amp;#123;       dialog: &amp;#123;">
   
-  <meta id="viewport" name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, minimal-ui">
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black">
-  <link href="/favicon.ico" rel="icon">
-  <link rel="alternate" href="/atom.xml" title="Renpingju" type="application/atom+xml">
-  <link rel="stylesheet" href="/css/style.css" media="screen" type="text/css">
+  <meta name="summary" content="Open your API to change the internet, open your mind to change the world.">
+  <link rel="shortcut icon" href="/">
+  <link rel="stylesheet" href="/css/style.css">
 </head>
 
-
 <body>
-<div class="blog">
-  <div class="content">
+  <div id="loading" class="active"></div>
 
-    <header>
-  <div class="site-branding">
-    <h1 class="site-title">
-      <a href="/">Renpingju</a>
-    </h1>
-    <p class="site-description">你有故事和酒，而我除了帅什么都没有。</p>
+  <nav id="menu"  >
+   <div class="inner flex-row-vertical">
+  <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+      <i class="icon icon-lg icon-close"></i>
+  </a>
+  <div class="brand-wrap">
+    <div class="brand">
+      <a href="/" class="avatar"><img src="undefined"></a>
+      <hgroup class="introduce">
+        <h5 class="nickname">renpingjun</h5>
+        <a href="mailto:ganrenping@gmail.com" title="ganrenping@gmail.com" class="mail">ganrenping@gmail.com</a>
+      </hgroup>
+    </div>
   </div>
-  <nav class="site-navigation">
-    <ul>
-      
-        <li><a href="/">主頁</a></li>
-      
-        <li><a href="/archives">歸檔</a></li>
-      
-        <li><a href="/categories">分類</a></li>
-      
-        <li><a href="/tags">標籤</a></li>
+  <div class="scroll-wrap flex-col">
+    <ul class="nav">
       
     </ul>
+
+    <footer class="footer">
+  <p><a rel="license" target="_blank" href="http://creativecommons.org/licenses/by-nc-sa/4.0/"><img alt="Creative Commons License" style="border-width:0;vertical-align:middle;" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAFAAAAAPCAMAAABEF7i9AAAAllBMVEUAAAD///+rsapERER3d3eIiIjMzMzu7u4iIiKUmZO6v7rKzsoODg4RERFVVVUNDQ0NDg0PEA8zMzNLTEtbXltmZmZydnF9gn2AgICPkI+ZmZmqqqq7u7vFxsXIzMgNDQwZGRkgICAhISEkJSMnKCcuMC4xMzE5Ozk7PTtBQkFCQkJDQ0Nna2eGhoaHh4ezuLLGysbd3d1wVGpAAAAA4UlEQVR42q2T1xqCMAyFk7QsBQeKA9x7j/d/OSm22CpX0nzcpA1/T05aAOuBVkMAScQFHLnEwoCo2f1TnQIGoVMewjZEjVFN4GH1Ue1Cn2jWqwfsOOj6wDwGvotsl/c8lv7KIq1eLOsT0HMFHMIE/RZyHnlphryT9zyV+8WH5e8yQw3wnQvgAFxPTKUVi555SHR/lOfLMgVTeDlSfN+TaoUsiTyeIm+bCkHvCA2FUKG48LDtYBZBknsYP/G8NTw0gaaHyuQf4H5pecrB/FYCT2sL9zAfy1Xyjou6L8X2W7YcLyBZCRtnq/zfAAAAAElFTkSuQmCC" /></a></p>
+  <p>仁平君 &copy; 2017</p>
+  <p>Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme
+  <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a></p>
+  <a href="undefined" target="_blank" class="rss" title="rss"><i class="icon icon-2x icon-rss-square"></i></a>
+</footer>
+
+  </div>
+</div>
+
   </nav>
+  <main id="main">
+    <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">函数绑定</div>
+        
+        
+    </div>
+</header>
+<header class="content-header">
+  <div class="container">
+    <h1 class="author">函数绑定</h1>
+    <h5 class="subtitle">
+        
+            <time datetime="2017-03-13T13:35:00.000Z" itemprop="datePublished" class="page-time">
+  2017-03-13
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/javascript/">javascript</a></li></ul>
+
+        
+    </h5>
+  </div>
 </header>
 
-    <main class="site-main posts-loop">
-    <article>
+    <div class="container body-wrap">
+      <article id="post-函数绑定" 
+  class="article article-type-post" itemprop="blogPost">
+    <div class="post-meta flex-row">
+        
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li></ul>
 
-  
-    
-    <h3 class="article-title"><span>函数绑定</span></h3>
-    
-  
+    </div>
+    <div class="post-body">
+        <aside class="post-widget" id="post-widget">
 
-  <div class="article-top-meta">
-    <span class="posted-on">
-      <a href="/2017/03/13/函数绑定/" rel="bookmark">
-        <time class="entry-date published" datetime="2017-03-13T13:35:00.000Z">
-          2017-03-13
-        </time>
-      </a>
-    </span>
-  </div>
+            
 
+            
+        </aside>
 
-  
+        <div class="post-main">
 
-  <div class="article-content">
-    <div class="entry">
-      
-        <p>函数绑定需要创建一个函数，可以在特定的this环境中以指定参数调用另一个函数，常和回调函数、事件处理程序一起使用，以便在将函数作为变量传递的同时不改变函数执行环境。</p>
+            <div class="post-content" id="post-content" itemprop="postContent">
+            <p>函数绑定需要创建一个函数，可以在特定的this环境中以指定参数调用另一个函数，常和回调函数、事件处理程序一起使用，以便在将函数作为变量传递的同时不改变函数执行环境。</p>
 <p>我们来看下面这个例子：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div></pre></td><td class="code"><pre><div class="line">var lottery = &#123;</div><div class="line">       dialog: &#123;</div><div class="line">           getGoods: <span class="string">"iphone 7"</span>,</div><div class="line">           getVoucher: <span class="string">"100"</span>,</div><div class="line">           getNone: <span class="string">"nothing"</span>,</div><div class="line">           noChance: <span class="string">"no chance"</span></div><div class="line">       &#125;,</div><div class="line">       <span class="built_in">bind</span>Event: <span class="function"><span class="title">function</span></span> () &#123;</div><div class="line">           $(<span class="string">"#lottery-btn"</span>).on(<span class="string">'click'</span>, <span class="function"><span class="title">function</span></span> () &#123;</div><div class="line">               $(<span class="string">'#lottery_canvas'</span>).addClass(<span class="string">'runanimation'</span>);</div><div class="line">               $.ajax(&#123;</div><div class="line">                   <span class="built_in">type</span>: <span class="string">"get"</span>,</div><div class="line">                   url: <span class="string">"ajaxUrl"</span>,</div><div class="line">                   dataType: <span class="string">"json"</span>,</div><div class="line">                   success: <span class="keyword">function</span> (data) &#123;</div><div class="line">                       <span class="keyword">if</span> (data.msg == <span class="string">"success"</span>) &#123;</div><div class="line">                           switch (data.status) &#123;</div><div class="line">                               <span class="keyword">case</span> 0 :</div><div class="line">                                   this.dialog.getNone;</div><div class="line">                                   <span class="built_in">break</span>;</div><div class="line">                               <span class="keyword">case</span> 1 :</div><div class="line">                                   this.dialog.noChance;</div><div class="line">                                   <span class="built_in">break</span>;</div><div class="line">                               <span class="keyword">case</span> 2 :</div><div class="line">                                   this.dialog.getVoucher;</div><div class="line">                                   <span class="built_in">break</span>;</div><div class="line">                               <span class="keyword">case</span> 3 :</div><div class="line">                                   this.dialog.getGoods;</div><div class="line">                                   <span class="built_in">break</span>;</div><div class="line">                           &#125;</div><div class="line">                       &#125;</div><div class="line">                   &#125;);</div><div class="line">           &#125;)</div><div class="line">       &#125;</div><div class="line">   &#125;</div></pre></td></tr></table></figure>
 <p>在这个例子中，我创建了一个lottery对象，lottery.bindEvent()方法被分配到一个id为lottery-btn的DOM结构上。按下按钮时，调用该函数，转盘转动，发送ajax请求，根据返回的值做不同的处理。</p>
 
-      
+
+            
+            
+            <blockquote>
+                <p>
+                本文地址：
+                <a href="renpingjun.cn/2017/03/13/函数绑定/" target="_blank" rel="external">renpingjun.cn/2017/03/13/函数绑定/</a>
+                </p>
+                <footer><cite><a href="renpingjun.cn">@仁平君</a></cite></footer>
+            </blockquote>
+            </div>
+            
+<nav class="post-nav">
+  
+    <div class="waves-block waves-effect prev fl">
+      <a href="/2017/03/23/科目一重要考點梳理（二）/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">科目一重要考點梳理（二）</h4>
+      </a>
     </div>
-
-  </div>
-
-  <div class="article-footer">
-    <div class="article-meta pull-left">
-
-    
-      
-
-    <span class="post-categories">
-      <i class="icon-categories"></i>
-        <a href="/categories/javascript/">javascript</a>
-    </span>
-    
-
-    
-    
-
-    <span class="post-tags">
-      <i class="icon-tags"></i>
-        <a href="/tags/javascript/">javascript</a>
-    </span>
-    
-
-    </div>
-
-    
-  </div>
-</article>
+  
 
   
-	<div id="comment">
+    <div class="waves-block waves-effect next fr">
+      <a href="/2017/03/12/How-to-Build-Your-Personal-Blog-in-Half-an-Hour/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">How to Build Your Personal Blog in Half an Hour ?</h4>
+      </a>
+    </div>
+  
+</nav>
 
-	<!-- 多说评论框 start -->
-    	<div class="ds-thread" data-thread-key="2017/03/13/函数绑定/" data-title="函数绑定" data-url="renpingjun.cn/2017/03/13/函数绑定/"></div>
-    <!-- 多说评论框 end -->
-    <!-- 多说公共JS代码 start (一个网页只需插入一次) -->
-    <script type="text/javascript">
-    var duoshuoQuery = {short_name:"renpingjun"};
-    	(function() {
-    		var ds = document.createElement('script');
-    		ds.type = 'text/javascript';ds.async = true;
-    		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
-    		ds.charset = 'UTF-8';
-    		(document.getElementsByTagName('head')[0]
-    		 || document.getElementsByTagName('body')[0]).appendChild(ds);
-    	})();
-    	</script>
-    <!-- 多说公共JS代码 end -->
 
-	</div>
+            
+            
 
 
 
+        </div>
+    </div>
+</article>
 
-    </main>
+    </div>
+  </main>
+<div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
 
-    <footer class="site-footer">
-  <p class="site-info">
-    
-    &copy; 2017 renpingjun All Rights Reserved.
-    
-  </p>
-</footer>
-    
-  </div>
-</div>
+<script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+
+<script src="/js/main.js"></script>
+
+
+
+
+
+
+
+
+
+
 </body>
 </html>
