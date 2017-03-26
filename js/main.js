@@ -201,7 +201,7 @@
             $('#search').addEventListener(even, toggleSearch);
         },
         reward: function () {
-            var modal = new this.modal('#reward')
+            var modal = new this.modal('#reward');
 
             $('#rewardBtn').addEventListener(even, modal.toggle)
         },
