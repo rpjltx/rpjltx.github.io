@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    <title>函数绑定 | 仁平君 | 你有故事和酒，而我除了帅什么都没有。</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#009a61">
+    
+    
+    <meta name="keywords" content="javascript">
+    <meta name="description" content="函数绑定需要创建一个函数，可以在特定的this环境中以指定参数调用另一个函数，常和回调函数、事件处理程序一起使用，以便在将函数作为变量传递的同时不改变函数执行环境。
+我们来看下面这个例子：
+1234567891011121314151617181920212223242526272829303132333435var lottery = &amp;#123;       dialog: &amp;#123;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="函数绑定">
+<meta property="og:url" content="http://renpingjun.cn/2017/03/13/encodeURI(函数绑定)/index.html">
+<meta property="og:site_name" content="仁平君">
+<meta property="og:description" content="函数绑定需要创建一个函数，可以在特定的this环境中以指定参数调用另一个函数，常和回调函数、事件处理程序一起使用，以便在将函数作为变量传递的同时不改变函数执行环境。
+我们来看下面这个例子：
+1234567891011121314151617181920212223242526272829303132333435var lottery = &amp;#123;       dialog: &amp;#123;">
+<meta property="og:updated_time" content="2017-03-13T14:19:57.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="函数绑定">
+<meta name="twitter:description" content="函数绑定需要创建一个函数，可以在特定的this环境中以指定参数调用另一个函数，常和回调函数、事件处理程序一起使用，以便在将函数作为变量传递的同时不改变函数执行环境。
+我们来看下面这个例子：
+1234567891011121314151617181920212223242526272829303132333435var lottery = &amp;#123;       dialog: &amp;#123;">
+    
+        <link rel="alternative" href="/atom.xml" title="仁平君" type="application/atom+xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="/css/style.css?v=1.4.14">
+    <script>window.lazyScripts=[]</script>
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/logo.jpeg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">仁平君</h5>
+          <a href="mailto:ganrenping@gmail.com" title="ganrenping@gmail.com" class="mail">ganrenping@gmail.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                Archives
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                Tags
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                Categories
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/rpjltx" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://twitter.com/renpingjun" target="_blank" >
+                <i class="icon icon-lg icon-twitter"></i>
+                Twitter
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="http://www.weibo.com/renpingjun" target="_blank" >
+                <i class="icon icon-lg icon-weibo"></i>
+                Weibo
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-link"></i>
+                友情链接
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">函数绑定</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">函数绑定</h1>
+        <h4 class="subtitle">
+            
+                <time datetime="2017-03-13T13:35:00.000Z" itemprop="datePublished" class="page-time">
+  2017-03-13
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/javascript/">javascript</a></li></ul>
+
+            
+        </h4>
+    </div>
+
+    
+
+</header>
+
+
+<div class="container body-wrap">
+    
+<article id="post-函数绑定"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">函数绑定</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2017年03月13日 21:35" datetime="2017-03-13T13:35:00.000Z"  itemprop="datePublished">2017-03-13</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/javascript/">javascript</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+            
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <p>函数绑定需要创建一个函数，可以在特定的this环境中以指定参数调用另一个函数，常和回调函数、事件处理程序一起使用，以便在将函数作为变量传递的同时不改变函数执行环境。</p>
+<p>我们来看下面这个例子：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div></pre></td><td class="code"><pre><div class="line">var lottery = &#123;</div><div class="line">       dialog: &#123;</div><div class="line">           getGoods: <span class="string">"iphone 7"</span>,</div><div class="line">           getVoucher: <span class="string">"100"</span>,</div><div class="line">           getNone: <span class="string">"nothing"</span>,</div><div class="line">           noChance: <span class="string">"no chance"</span></div><div class="line">       &#125;,</div><div class="line">       <span class="built_in">bind</span>Event: <span class="function"><span class="title">function</span></span> () &#123;</div><div class="line">           $(<span class="string">"#lottery-btn"</span>).on(<span class="string">'click'</span>, <span class="function"><span class="title">function</span></span> () &#123;</div><div class="line">               $(<span class="string">'#lottery_canvas'</span>).addClass(<span class="string">'runanimation'</span>);</div><div class="line">               $.ajax(&#123;</div><div class="line">                   <span class="built_in">type</span>: <span class="string">"get"</span>,</div><div class="line">                   url: <span class="string">"ajaxUrl"</span>,</div><div class="line">                   dataType: <span class="string">"json"</span>,</div><div class="line">                   success: <span class="keyword">function</span> (data) &#123;</div><div class="line">                       <span class="keyword">if</span> (data.msg == <span class="string">"success"</span>) &#123;</div><div class="line">                           switch (data.status) &#123;</div><div class="line">                               <span class="keyword">case</span> 0 :</div><div class="line">                                   this.dialog.getNone;</div><div class="line">                                   <span class="built_in">break</span>;</div><div class="line">                               <span class="keyword">case</span> 1 :</div><div class="line">                                   this.dialog.noChance;</div><div class="line">                                   <span class="built_in">break</span>;</div><div class="line">                               <span class="keyword">case</span> 2 :</div><div class="line">                                   this.dialog.getVoucher;</div><div class="line">                                   <span class="built_in">break</span>;</div><div class="line">                               <span class="keyword">case</span> 3 :</div><div class="line">                                   this.dialog.getGoods;</div><div class="line">                                   <span class="built_in">break</span>;</div><div class="line">                           &#125;</div><div class="line">                       &#125;</div><div class="line">                   &#125;);</div><div class="line">           &#125;)</div><div class="line">       &#125;</div><div class="line">   &#125;</div></pre></td></tr></table></figure>
+<p>在这个例子中，我创建了一个lottery对象，lottery.bindEvent()方法被分配到一个id为lottery-btn的DOM结构上。按下按钮时，调用该函数，转盘转动，发送ajax请求，根据返回的值做不同的处理。</p>
+
+        </div>
+
+        <blockquote class="post-copyright">
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2017-03-13T14:19:57.000Z" itemprop="dateUpdated">2017年3月13日 22:19</time>
+</span><br>
+
+
+        这里写留言或版权声明：<a href="/2017/03/13/encodeURI(函数绑定)/" target="_blank" rel="external">http://renpingjun.cn/2017/03/13/encodeURI(函数绑定)/</a>
+    </div>
+    <footer>
+        <a href="http://renpingjun.cn">
+            <img src="/img/logo.jpeg" alt="仁平君">
+            仁平君
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://renpingjun.cn/2017/03/13/encodeURI(函数绑定)/&title=《函数绑定》 — 仁平君&pic=http://renpingjun.cn/img/logo.jpeg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://renpingjun.cn/2017/03/13/encodeURI(函数绑定)/&title=《函数绑定》 — 仁平君&source=Open your API to change the internet, open your mind to change the world." data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://renpingjun.cn/2017/03/13/encodeURI(函数绑定)/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《函数绑定》 — 仁平君&url=http://renpingjun.cn/2017/03/13/encodeURI(函数绑定)/&via=http://renpingjun.cn" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://renpingjun.cn/2017/03/13/encodeURI(函数绑定)/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between">
+  
+    <div class="waves-block waves-effect prev">
+      <a href="/2017/03/23/encodeURI(科目一重要考點梳理（一）)/" id="post-prev" class="post-nav-link">
+        <div class="tips"><i class="icon icon-angle-left icon-lg icon-pr"></i> Prev</div>
+        <h4 class="title">科目一重要考點梳理（一）</h4>
+      </a>
+    </div>
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2017/03/12/encodeURI(How-to-Build-Your-Personal-Blog-in-Half-an-Hour)/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">How to Build Your Personal Blog in Half an Hour ?</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+    
+            <!-- UY BEGIN -->
+<div id="uyan_frame"></div>
+<script type="text/javascript" src="http://v2.uyan.cc/code/uyan.js?uid=2128696"></script>
+<!-- UY END -->
+        
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢谢打赏~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <ul class="reward-items">
+        
+        <li>
+            <img src="/img/Wechat.png" title="微信打赏二维码" alt="微信打赏二维码">
+            <p>微信</p>
+        </li>
+        
+
+        
+        <li>
+            <img src="/img/alipay.png" title="支付宝打赏二维码" alt="支付宝打赏二维码">
+            <p>支付宝</p>
+        </li>
+        
+    </ul>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点UV：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点PV：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            <span>博客内容遵循 <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">知识共享 署名 - 非商业性 - 相同方式共享 4.0协议</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p>
+            <!--<span>Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a></span>-->
+            <span>仁平君&copy;All Rights Reserved</span>
+            <span>2016 - 2017</span>
+        </p>
+    </div>
+</footer>
+<!--百度统计-->
+<script>
+    var _hmt = _hmt || [];
+    (function() {
+        var hm = document.createElement("script");
+        hm.src = "https://hm.baidu.com/hm.js?a1b12a851f7e118fcdaac2f8f624f832";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://renpingjun.cn/2017/03/13/encodeURI(函数绑定)/&title=《函数绑定》 — 仁平君&pic=http://renpingjun.cn/img/logo.jpeg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://renpingjun.cn/2017/03/13/encodeURI(函数绑定)/&title=《函数绑定》 — 仁平君&source=Open your API to change the internet, open your mind to change the world." data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://renpingjun.cn/2017/03/13/encodeURI(函数绑定)/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《函数绑定》 — 仁平君&url=http://renpingjun.cn/2017/03/13/encodeURI(函数绑定)/&via=http://renpingjun.cn" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://renpingjun.cn/2017/03/13/encodeURI(函数绑定)/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACKUlEQVR42u3aQW7DMAwEwPz/0y7QUw+1sys5ASyNTkUS2BodWFLk6xWv43ddf378Wcm3+W9uWxgYGI9lHJfr7DfXm2i3mz/zlIqBgbEBow2mM3GvPZroHwAGBgbGUABtwygGBgbGXYw3KdpQupkfHwYGxs6M+SCYH03+7UdqcQwMjAcy2sbAN//+YH8DAwPjIYyjXPk1WR5q2yD7z9sxMDCWZoxt695GQhtkiwwXAwNjCUbysrsakHnzoD5QDAyMbRjJRVheP7ZJXvLk02PCwMDYhjE2SJGHyPaT4i0YGBjbMPJULG9htgc0NoKGgYGxA2NsrGGmrE02mgdiDAyMtRntvXo77dCG0Tcbvd4VBgbGloyZYjW/9G9H0OqAi4GB8XDGzDBEnkS2z2+boBgYGGsz8lTv+iqtLV/by7i2sYqBgbEqo33BWEi9rW2JgYGxGSMvRPNRsJw0NtgxmL1iYGA8nDFT0I41EpLStDhiDAyMjRlHsNoyOGlqtmklBgbGqoxPDIG1pW/bHMXAwNiZ0V6TzVzDzTQsT4ctMDAwFmW0ZWf7mrECuN0DBgbG2oyjXO1IRNueHEwWMTAwlma0wW6mAdmOXMwUzxgYGOsx8iA705hsS9mop5F3MDAwMJZgtFdpbTpY9FTHxjgwMDAwkhu7m1K9qdQQAwMDI24r3jtmEaWeGBgYGzDyIrbd4lirsi2zMTAw1maMNQamrsbiSZB2mAMDA2M5xg/nh61jUo224AAAAABJRU5ErkJggg==" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+
+</script>
+
+<script src="/js/main.min.js?v=1.4.14"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="/js/search.min.js?v=1.4.14" async></script>
+
+
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+</body>
+</html>
