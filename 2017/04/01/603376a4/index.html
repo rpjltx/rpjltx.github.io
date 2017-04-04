@@ -1,0 +1,507 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    <title>复制Array数组的正确姿势 | 仁平君 | 你有故事和酒，而我除了帅什么都没有。</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#009a61">
+    
+    
+    <meta name="keywords" content="javascript">
+    <meta name="description" content="引子我们先假设有这样一个数组：
+var arr = [&amp;apos;one&amp;apos;, &amp;apos;two&amp;apos;, &amp;apos;three&amp;apos;]
+然后再申明var arr2 = arr ，诚然此时arr2算是复制了一个和arr一样的数组，好像没什么问题。但是当我们执行arr2.pop()方法后再来看看，两个数组都变成了[‘one’, ‘two’]，这并不是我们所希望看到的结果。我们希">
+<meta property="og:type" content="article">
+<meta property="og:title" content="复制Array数组的正确姿势">
+<meta property="og:url" content="http://renpingjun.cn/2017/04/01/603376a4/index.html">
+<meta property="og:site_name" content="仁平君">
+<meta property="og:description" content="引子我们先假设有这样一个数组：
+var arr = [&amp;apos;one&amp;apos;, &amp;apos;two&amp;apos;, &amp;apos;three&amp;apos;]
+然后再申明var arr2 = arr ，诚然此时arr2算是复制了一个和arr一样的数组，好像没什么问题。但是当我们执行arr2.pop()方法后再来看看，两个数组都变成了[‘one’, ‘two’]，这并不是我们所希望看到的结果。我们希">
+<meta property="og:updated_time" content="2017-04-04T00:09:14.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="复制Array数组的正确姿势">
+<meta name="twitter:description" content="引子我们先假设有这样一个数组：
+var arr = [&amp;apos;one&amp;apos;, &amp;apos;two&amp;apos;, &amp;apos;three&amp;apos;]
+然后再申明var arr2 = arr ，诚然此时arr2算是复制了一个和arr一样的数组，好像没什么问题。但是当我们执行arr2.pop()方法后再来看看，两个数组都变成了[‘one’, ‘two’]，这并不是我们所希望看到的结果。我们希">
+    
+        <link rel="alternative" href="/atom.xml" title="仁平君" type="application/atom+xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="/css/style.css?v=1.4.14">
+    <script>window.lazyScripts=[]</script>
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/logo.jpeg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">仁平君</h5>
+          <a href="mailto:ganrenping@gmail.com" title="ganrenping@gmail.com" class="mail">ganrenping@gmail.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                Archives
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                Tags
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                Categories
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/rpjltx" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://twitter.com/renpingjun" target="_blank" >
+                <i class="icon icon-lg icon-twitter"></i>
+                Twitter
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="http://www.weibo.com/renpingjun" target="_blank" >
+                <i class="icon icon-lg icon-weibo"></i>
+                Weibo
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-link"></i>
+                友情链接
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">复制Array数组的正确姿势</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">复制Array数组的正确姿势</h1>
+        <h4 class="subtitle">
+            
+                <time datetime="2017-04-01T14:35:00.000Z" itemprop="datePublished" class="page-time">
+  2017-04-01
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/javascript/">javascript</a></li></ul>
+
+            
+        </h4>
+    </div>
+
+    
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#引子"><span class="post-toc-text">引子</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#for循环复制数组"><span class="post-toc-text">for循环复制数组</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#Array-from-方法复制数组"><span class="post-toc-text">Array.from()方法复制数组</span></a></li><li class="post-toc-item post-toc-level-2"><a class="post-toc-link" href="#…扩展运算符"><span class="post-toc-text">…扩展运算符</span></a></li></ol>
+        </nav>
+    </aside>
+    
+<article id="post-复制Array数组的正确姿势"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">复制Array数组的正确姿势</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2017年04月01日 22:35" datetime="2017-04-01T14:35:00.000Z"  itemprop="datePublished">2017-04-01</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/javascript/">javascript</a></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+            
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <h2 id="引子"><a href="#引子" class="headerlink" title="引子"></a>引子</h2><p>我们先假设有这样一个数组：</p>
+<pre><code>var arr = [&apos;one&apos;, &apos;two&apos;, &apos;three&apos;]
+</code></pre><p>然后再申明var arr2 = arr ，诚然此时arr2算是复制了一个和arr一样的数组，好像没什么问题。但是当我们执行arr2.pop()方法后再来看看，两个数组都变成了[‘one’, ‘two’]，这并不是我们所希望看到的结果。我们希望复制后的两个数组可以各行其是，独行于世。</p>
+<h2 id="for循环复制数组"><a href="#for循环复制数组" class="headerlink" title="for循环复制数组"></a>for循环复制数组</h2><p>比较传统的做法就是使用for循环arr数组得到arr2数组，这样我们就成功复制数组arr，得道了一个新的独立的数组arr2，再次验证arr2.pop()方法，并没有对arr数组产生影响。</p>
+<pre><code>var arr = [&apos;one&apos;, &apos;two&apos;, &apos;three&apos;]；
+var arr2 = [];
+for(var i=0;i&lt;arr.length;i++){
+    arr2[i]=arr[i];
+}
+arr2.pop()；
+console.log(arr,arr2) // [&apos;one&apos;, &apos;two&apos;, &apos;three&apos;],[&apos;one&apos;, &apos;two&apos;]
+</code></pre><h2 id="Array-from-方法复制数组"><a href="#Array-from-方法复制数组" class="headerlink" title="Array.from()方法复制数组"></a>Array.from()方法复制数组</h2><p>Array.from()是ES6中新增的数组方法，这个方法的作用是从一个数组或具有数组某些行为的对象中生成一个新的数组。代码示例：</p>
+<pre><code>/*从一个数组生成新数组*/
+var arr = [&apos;one&apos;, &apos;two&apos;, &apos;three&apos;]；
+var arr2 = Array.from(arr);
+arr2.pop()；
+console.log(arr,arr2) // [&apos;one&apos;, &apos;two&apos;, &apos;three&apos;],[&apos;one&apos;, &apos;two&apos;]
+
+／*从具有数组某些行为的对象中生成新数组*／
+var imgs = Array.from(document.querySelectorAll(&apos;img&apos;));
+</code></pre><h2 id="…扩展运算符"><a href="#…扩展运算符" class="headerlink" title="…扩展运算符"></a>…扩展运算符</h2><p>…是ES6新增的扩展运算符，它将一个数组转化为用逗号分隔的参数序列。代码示例：</p>
+<pre><code>var arr = [&apos;one&apos;, &apos;two&apos;, &apos;three&apos;]；
+var arr2 = [...arr];
+arr2.pop()；
+console.log(arr,arr2) // [&apos;one&apos;, &apos;two&apos;, &apos;three&apos;],[&apos;one&apos;, &apos;two&apos;]
+</code></pre><p>此运算符主要用于函数调用：</p>
+<pre><code>function show(...args){
+args.push(6);
+}
+show(1,2,3,4,5) //1,2,3,4,5,6
+</code></pre>
+        </div>
+
+        <blockquote class="post-copyright">
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2017-04-04T00:09:14.000Z" itemprop="dateUpdated">2017年4月4日 8:09</time>
+</span><br>
+
+
+        这里写留言或版权声明：<a href="/2017/04/01/603376a4/" target="_blank" rel="external">http://renpingjun.cn/2017/04/01/603376a4/</a>
+    </div>
+    <footer>
+        <a href="http://renpingjun.cn">
+            <img src="/img/logo.jpeg" alt="仁平君">
+            仁平君
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/javascript/">javascript</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://renpingjun.cn/2017/04/01/603376a4/&title=《复制Array数组的正确姿势》 — 仁平君&pic=http://renpingjun.cn/img/logo.jpeg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://renpingjun.cn/2017/04/01/603376a4/&title=《复制Array数组的正确姿势》 — 仁平君&source=Open your API to change the internet, open your mind to change the world." data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://renpingjun.cn/2017/04/01/603376a4/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《复制Array数组的正确姿势》 — 仁平君&url=http://renpingjun.cn/2017/04/01/603376a4/&via=http://renpingjun.cn" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://renpingjun.cn/2017/04/01/603376a4/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between flex-row-reverse">
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2017/03/26/603377a4/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">科目一重要考點梳理（四）</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+    
+            <!-- UY BEGIN -->
+<div id="uyan_frame"></div>
+<script type="text/javascript" src="http://v2.uyan.cc/code/uyan.js?uid=2128696"></script>
+<!-- UY END -->
+        
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢谢打赏~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <ul class="reward-items">
+        
+        <li>
+            <img src="/img/Wechat.png" title="微信打赏二维码" alt="微信打赏二维码">
+            <p>微信</p>
+        </li>
+        
+
+        
+        <li>
+            <img src="/img/alipay.png" title="支付宝打赏二维码" alt="支付宝打赏二维码">
+            <p>支付宝</p>
+        </li>
+        
+    </ul>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点UV：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点PV：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            <span>博客内容遵循 <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">知识共享 署名 - 非商业性 - 相同方式共享 4.0协议</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p>
+            <!--<span>Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a></span>-->
+            <span>仁平君&copy;All Rights Reserved</span>
+            <span>2016 - 2017</span>
+        </p>
+    </div>
+</footer>
+<!--百度统计-->
+<script>
+    var _hmt = _hmt || [];
+    (function() {
+        var hm = document.createElement("script");
+        hm.src = "https://hm.baidu.com/hm.js?a1b12a851f7e118fcdaac2f8f624f832";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://renpingjun.cn/2017/04/01/603376a4/&title=《复制Array数组的正确姿势》 — 仁平君&pic=http://renpingjun.cn/img/logo.jpeg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://renpingjun.cn/2017/04/01/603376a4/&title=《复制Array数组的正确姿势》 — 仁平君&source=Open your API to change the internet, open your mind to change the world." data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://renpingjun.cn/2017/04/01/603376a4/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《复制Array数组的正确姿势》 — 仁平君&url=http://renpingjun.cn/2017/04/01/603376a4/&via=http://renpingjun.cn" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://renpingjun.cn/2017/04/01/603376a4/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAK4AAACuCAAAAACKZ2kyAAABuUlEQVR42u3aS27DMAwFwNz/0u42QBv3UZQIBxitCseWxl0Q/Pj1itf1tt6v3P/6e326f/PCxcVtc6/bld9zv/+nfcr74+LiDnKTY5Kwdc9KwuI/Nlxc3Adzkzs7e+Li4n4jd2/xg4uL+0xuckBCWQteR2o1XFzcBjfvUp77+0h/FxcXd4l7FVd/t9bpuLi4I9w8oOyd4q79C3BxcSe5922IamujWkolATHKvHBxcQ9w8/ZltTFabaaUP8LAxcXdys0fqAa1agSNXhsXF3eEmxxWTUH6DZSoVsPFxR3n3qc7ndDWGdvg4uLOcPusPBRWE6Y/nsLFxR3nnmiRJHfmL4aLizvDTUYp1YFHv/1RSJVwcXEPc6vj1TwZ2lUI4eLiTnLzYFS9nqQv5eu4uLiD3OqwpFrMbEubcHFxB7lrbYtkbcvCcHFxBwuezsFJ27T6mdfiVxu4uLibuNXgshaq8hFs/iwuLu5pbh50kmM6qVJUgOHi4g5yqx9hdILahvQFFxf3Ydx+eKqWSbi4uN/C7Zc3+ci2leLg4uI2uJ3mZtLUSAY20avi4uKOcKsVR3+kupYG4eLijnB/ALbCcbBvMfUgAAAAAElFTkSuQmCC" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+
+</script>
+
+<script src="/js/main.min.js?v=1.4.14"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="/js/search.min.js?v=1.4.14" async></script>
+
+
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+</body>
+</html>
