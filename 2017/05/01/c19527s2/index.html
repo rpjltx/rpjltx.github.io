@@ -1,0 +1,559 @@
+<!DOCTYPE html>
+<html>
+<head>
+    
+
+    
+
+    
+
+
+
+    <meta charset="utf-8">
+    
+    
+    
+    <title>MySQL 优化原理[转] | 仁平君 | 你有故事和酒，而我除了帅什么都没有。</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <meta name="theme-color" content="#009a61">
+    
+    
+    <meta name="keywords" content="mysql,数据库">
+    <meta name="description" content="说起MySQL的查询优化，相信大家收藏了一堆奇淫技巧：不能使用SELECT *、不使用NULL字段、合理创建索引、为字段选择合适的数据类型….. 你是否真的理解这些优化技巧？是否理解其背后的工作原理？在实际场景下性能真有提升吗？我想未必。因而理解这些优化建议背后的原理就尤为重要，希望本文能让你重新审视这些优化建议，并在实际业务场景下合理的运用。
+MySQL逻辑架构如果能在头脑中构建一幅MySQL各">
+<meta property="og:type" content="article">
+<meta property="og:title" content="MySQL 优化原理[转]">
+<meta property="og:url" content="http://renpingjun.cn/2017/05/01/c19527s2/index.html">
+<meta property="og:site_name" content="仁平君">
+<meta property="og:description" content="说起MySQL的查询优化，相信大家收藏了一堆奇淫技巧：不能使用SELECT *、不使用NULL字段、合理创建索引、为字段选择合适的数据类型….. 你是否真的理解这些优化技巧？是否理解其背后的工作原理？在实际场景下性能真有提升吗？我想未必。因而理解这些优化建议背后的原理就尤为重要，希望本文能让你重新审视这些优化建议，并在实际业务场景下合理的运用。
+MySQL逻辑架构如果能在头脑中构建一幅MySQL各">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/175724-2abdb6fbad8affa0.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:image" content="http://upload-images.jianshu.io/upload_images/175724-cb247a2b90ea9d4d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+<meta property="og:updated_time" content="2017-05-01T10:10:43.000Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="MySQL 优化原理[转]">
+<meta name="twitter:description" content="说起MySQL的查询优化，相信大家收藏了一堆奇淫技巧：不能使用SELECT *、不使用NULL字段、合理创建索引、为字段选择合适的数据类型….. 你是否真的理解这些优化技巧？是否理解其背后的工作原理？在实际场景下性能真有提升吗？我想未必。因而理解这些优化建议背后的原理就尤为重要，希望本文能让你重新审视这些优化建议，并在实际业务场景下合理的运用。
+MySQL逻辑架构如果能在头脑中构建一幅MySQL各">
+<meta name="twitter:image" content="http://upload-images.jianshu.io/upload_images/175724-2abdb6fbad8affa0.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240">
+    
+        <link rel="alternative" href="/atom.xml" title="仁平君" type="application/atom+xml">
+    
+    <link rel="shortcut icon" href="/favicon.ico">
+    <link rel="stylesheet" href="/css/style.css?v=1.4.14">
+    <script>window.lazyScripts=[]</script>
+</head>
+
+<body>
+    <div id="loading" class="active"></div>
+
+    <aside id="menu" class="hide" >
+  <div class="inner flex-row-vertical">
+    <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menu-off">
+        <i class="icon icon-lg icon-close"></i>
+    </a>
+    <div class="brand-wrap">
+      <div class="brand">
+        <a href="/" class="avatar waves-effect waves-circle waves-light">
+          <img src="/img/logo.jpeg">
+        </a>
+        <hgroup class="introduce">
+          <h5 class="nickname">仁平君</h5>
+          <a href="mailto:ganrenping@gmail.com" title="ganrenping@gmail.com" class="mail">ganrenping@gmail.com</a>
+        </hgroup>
+      </div>
+    </div>
+    <div class="scroll-wrap flex-col">
+      <ul class="nav">
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-home"></i>
+                主页
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/archives"  >
+                <i class="icon icon-lg icon-archives"></i>
+                Archives
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/tags"  >
+                <i class="icon icon-lg icon-tags"></i>
+                Tags
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/categories"  >
+                <i class="icon icon-lg icon-th-list"></i>
+                Categories
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://github.com/rpjltx" target="_blank" >
+                <i class="icon icon-lg icon-github"></i>
+                Github
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="https://twitter.com/renpingjun" target="_blank" >
+                <i class="icon icon-lg icon-twitter"></i>
+                Twitter
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="http://www.weibo.com/renpingjun" target="_blank" >
+                <i class="icon icon-lg icon-weibo"></i>
+                Weibo
+              </a>
+            </li>
+        
+            <li class="waves-block waves-effect">
+              <a href="/"  >
+                <i class="icon icon-lg icon-link"></i>
+                友情链接
+              </a>
+            </li>
+        
+      </ul>
+    </div>
+  </div>
+</aside>
+
+    <main id="main">
+        <header class="top-header" id="header">
+    <div class="flex-row">
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light on" id="menu-toggle">
+          <i class="icon icon-lg icon-navicon"></i>
+        </a>
+        <div class="flex-col header-title ellipsis">MySQL 优化原理[转]</div>
+        
+        <div class="search-wrap" id="search-wrap">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="back">
+                <i class="icon icon-lg icon-chevron-left"></i>
+            </a>
+            <input type="text" id="key" class="search-input" autocomplete="off" placeholder="输入感兴趣的关键字">
+            <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="search">
+                <i class="icon icon-lg icon-search"></i>
+            </a>
+        </div>
+        
+        
+        <a href="javascript:;" class="header-icon waves-effect waves-circle waves-light" id="menuShare">
+            <i class="icon icon-lg icon-share-alt"></i>
+        </a>
+        
+    </div>
+</header>
+<header class="content-header post-header">
+
+    <div class="container fade-scale">
+        <h1 class="title">MySQL 优化原理[转]</h1>
+        <h4 class="subtitle">
+            
+                <time datetime="2017-05-01T10:45:00.000Z" itemprop="datePublished" class="page-time">
+  2017-05-01
+</time>
+
+
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/数据库/">数据库</a><ul class="article-category-list-child"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/数据库/mysql/"> mysql</a></li></ul></li></ul>
+
+            
+        </h4>
+    </div>
+
+    
+
+</header>
+
+
+<div class="container body-wrap">
+    
+    <aside class="post-widget">
+        <nav class="post-toc-wrap" id="post-toc">
+            <h4>TOC</h4>
+            <ol class="post-toc"><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#MySQL逻辑架构"><span class="post-toc-text">MySQL逻辑架构</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#MySQL查询过程"><span class="post-toc-text">MySQL查询过程</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#客户端-服务端通信协议"><span class="post-toc-text">客户端/服务端通信协议</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#查询缓存"><span class="post-toc-text">查询缓存</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#语法解析和预处理"><span class="post-toc-text">语法解析和预处理</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#查询优化"><span class="post-toc-text">查询优化</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#查询执行引擎"><span class="post-toc-text">查询执行引擎</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#返回结果给客户端"><span class="post-toc-text">返回结果给客户端</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#性能优化建议"><span class="post-toc-text">性能优化建议</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#Scheme设计与数据类型优化"><span class="post-toc-text">Scheme设计与数据类型优化</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#创建高性能索引"><span class="post-toc-text">创建高性能索引</span></a></li><li class="post-toc-item post-toc-level-3"><a class="post-toc-link" href="#索引相关的数据结构和算法"><span class="post-toc-text">索引相关的数据结构和算法</span></a><ol class="post-toc-child"><li class="post-toc-item post-toc-level-5"><a class="post-toc-link" href="#余下原文地址：http-www-jianshu-com-p-d7665192aaaf"><span class="post-toc-text">余下原文地址：http://www.jianshu.com/p/d7665192aaaf</span></a></li></ol></li></ol></li></ol>
+        </nav>
+    </aside>
+    
+<article id="post-MySQL-优化原理-转"
+  class="post-article article-type-post fade" itemprop="blogPost">
+
+    <div class="post-card">
+        <h1 class="post-card-title">MySQL 优化原理[转]</h1>
+        <div class="post-meta">
+            <time class="post-time" title="2017年05月01日 18:45" datetime="2017-05-01T10:45:00.000Z"  itemprop="datePublished">2017-05-01</time>
+
+            
+	<ul class="article-category-list"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/数据库/">数据库</a><ul class="article-category-list-child"><li class="article-category-list-item"><a class="article-category-list-link" href="/categories/数据库/mysql/"> mysql</a></li></ul></li></ul>
+
+
+
+            
+<span id="busuanzi_container_page_pv" title="文章总阅读量" style='display:none'>
+    <i class="icon icon-eye icon-pr"></i><span id="busuanzi_value_page_pv"></span>
+</span>
+
+
+            
+
+        </div>
+        <div class="post-content" id="post-content" itemprop="postContent">
+            <p>说起MySQL的查询优化，相信大家收藏了一堆奇淫技巧：不能使用SELECT *、不使用NULL字段、合理创建索引、为字段选择合适的数据类型….. 你是否真的理解这些优化技巧？是否理解其背后的工作原理？在实际场景下性能真有提升吗？我想未必。因而理解这些优化建议背后的原理就尤为重要，希望本文能让你重新审视这些优化建议，并在实际业务场景下合理的运用。</p>
+<h3 id="MySQL逻辑架构"><a href="#MySQL逻辑架构" class="headerlink" title="MySQL逻辑架构"></a>MySQL逻辑架构</h3><p>如果能在头脑中构建一幅MySQL各组件之间如何协同工作的架构图，有助于深入理解MySQL服务器。下图展示了MySQL的逻辑架构图。<br><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://upload-images.jianshu.io/upload_images/175724-2abdb6fbad8affa0.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="MySQL逻辑架构" title="">
+                </div>
+                <div class="image-caption">MySQL逻辑架构</div>
+            </figure></p>
+<p>MySQL逻辑架构整体分为三层，最上层为客户端层，并非MySQL所独有，诸如：连接处理、授权认证、安全等功能均在这一层处理。</p>
+<p>MySQL大多数核心服务均在中间这一层，包括查询解析、分析、优化、缓存、内置函数(比如：时间、数学、加密等函数)。所有的跨存储引擎的功能也在这一层实现：存储过程、触发器、视图等。</p>
+<p>最下层为存储引擎，其负责MySQL中的数据存储和提取。和Linux下的文件系统类似，每种存储引擎都有其优势和劣势。中间的服务层通过API与存储引擎通信，这些API接口屏蔽了不同存储引擎间的差异。</p>
+<h3 id="MySQL查询过程"><a href="#MySQL查询过程" class="headerlink" title="MySQL查询过程"></a>MySQL查询过程</h3><p>我们总是希望MySQL能够获得更高的查询性能，最好的办法是弄清楚MySQL是如何优化和执行查询的。一旦理解了这一点，就会发现：很多的查询优化工作实际上就是遵循一些原则让MySQL的优化器能够按照预想的合理方式运行而已。</p>
+<p>当向MySQL发送一个请求的时候，MySQL到底做了些什么呢？<br><figure class="image-bubble">
+                <div class="img-lightbox">
+                    <div class="overlay"></div>
+                    <img src="http://upload-images.jianshu.io/upload_images/175724-cb247a2b90ea9d4d.png?imageMogr2/auto-orient/strip%7CimageView2/2/w/1240" alt="MySQL查询过程" title="">
+                </div>
+                <div class="image-caption">MySQL查询过程</div>
+            </figure></p>
+<h3 id="客户端-服务端通信协议"><a href="#客户端-服务端通信协议" class="headerlink" title="客户端/服务端通信协议"></a>客户端/服务端通信协议</h3><p>MySQL客户端/服务端通信协议是“半双工”的：在任一时刻，要么是服务器向客户端发送数据，要么是客户端向服务器发送数据，这两个动作不能同时发生。一旦一端开始发送消息，另一端要接收完整个消息才能响应它，所以我们无法也无须将一个消息切成小块独立发送，也没有办法进行流量控制。</p>
+<p>客户端用一个单独的数据包将查询请求发送给服务器，所以当查询语句很长的时候，需要设置max_allowed_packet参数。但是需要注意的是，如果查询实在是太大，服务端会拒绝接收更多数据并抛出异常。</p>
+<p>与之相反的是，服务器响应给用户的数据通常会很多，由多个数据包组成。但是当服务器响应客户端请求时，客户端必须完整的接收整个返回结果，而不能简单的只取前面几条结果，然后让服务器停止发送。因而在实际开发中，尽量保持查询简单且只返回必需的数据，减小通信间数据包的大小和数量是一个非常好的习惯，这也是查询中尽量避免使用SELECT *以及加上LIMIT限制的原因之一。</p>
+<h3 id="查询缓存"><a href="#查询缓存" class="headerlink" title="查询缓存"></a>查询缓存</h3><p>在解析一个查询语句前，如果查询缓存是打开的，那么MySQL会检查这个查询语句是否命中查询缓存中的数据。如果当前查询恰好命中查询缓存，在检查一次用户权限后直接返回缓存中的结果。这种情况下，查询不会被解析，也不会生成执行计划，更不会执行。</p>
+<p>MySQL将缓存存放在一个引用表（不要理解成table，可以认为是类似于HashMap的数据结构），通过一个哈希值索引，这个哈希值通过查询本身、当前要查询的数据库、客户端协议版本号等一些可能影响结果的信息计算得来。所以两个查询在任何字符上的不同（例如：空格、注释），都会导致缓存不会命中。</p>
+<p>如果查询中包含任何用户自定义函数、存储函数、用户变量、临时表、mysql库中的系统表，其查询结果<br>都不会被缓存。比如函数NOW()或者CURRENT_DATE()会因为不同的查询时间，返回不同的查询结果，再比如包含CURRENT_USER或者CONNECION_ID()的查询语句会因为不同的用户而返回不同的结果，将这样的查询结果缓存起来没有任何的意义。</p>
+<p>既然是缓存，就会失效，那查询缓存何时失效呢？MySQL的查询缓存系统会跟踪查询中涉及的每个表，如果这些表（数据或结构）发生变化，那么和这张表相关的所有缓存数据都将失效。正因为如此，在任何的写操作时，MySQL必须将对应表的所有缓存都设置为失效。如果查询缓存非常大或者碎片很多，这个操作就可能带来很大的系统消耗，甚至导致系统僵死一会儿。而且查询缓存对系统的额外消耗也不仅仅在写操作，读操作也不例外：</p>
+<ul>
+<li><p>任何的查询语句在开始之前都必须经过检查，即使这条SQL语句永远不会命中缓存</p>
+</li>
+<li><p>如果查询结果可以被缓存，那么执行完成后，会将结果存入缓存，也会带来额外的系统消耗</p>
+</li>
+</ul>
+<p>基于此，我们要知道并不是什么情况下查询缓存都会提高系统性能，缓存和失效都会带来额外消耗，只有当缓存带来的资源节约大于其本身消耗的资源时，才会给系统带来性能提升。但要如何评估打开缓存是否能够带来性能提升是一件非常困难的事情，也不在本文讨论的范畴内。如果系统确实存在一些性能问题，可以尝试打开查询缓存，并在数据库设计上做一些优化，比如：</p>
+<ul>
+<li>用多个小表代替一个大表，注意不要过度设计</li>
+<li>批量插入代替循环单条插入</li>
+<li>合理控制缓存空间大小，一般来说其大小设置为几十兆比较合适</li>
+<li>可以通过SQL_CACHE和SQL_NO_CACHE来控制某个查询语句是否需要进行缓存</li>
+</ul>
+<p>最后的忠告是不要轻易打开查询缓存，特别是写密集型应用。如果你实在是忍不住，可以将query_cache_type设置为DEMAND，这时只有加入SQL_CACHE的查询才会走缓存，其他查询则不会，这样可以非常自由地控制哪些查询需要被缓存。</p>
+<p>当然查询缓存系统本身是非常复杂的，这里讨论的也只是很小的一部分，其他更深入的话题，比如：缓存是如何使用内存的？如何控制内存的碎片化？事务对查询缓存有何影响等等，读者可以自行阅读相关资料，这里权当抛砖引玉吧。</p>
+<h3 id="语法解析和预处理"><a href="#语法解析和预处理" class="headerlink" title="语法解析和预处理"></a>语法解析和预处理</h3><p>MySQL通过关键字将SQL语句进行解析，并生成一颗对应的解析树。这个过程解析器主要通过语法规则来验证和解析。比如SQL中是否使用了错误的关键字或者关键字的顺序是否正确等等。预处理则会根据MySQL规则进一步检查解析树是否合法。比如检查要查询的数据表和数据列是否存在等等。</p>
+<h3 id="查询优化"><a href="#查询优化" class="headerlink" title="查询优化"></a>查询优化</h3><p>经过前面的步骤生成的语法树被认为是合法的了，并且由优化器将其转化成查询计划。多数情况下，一条查询可以有很多种执行方式，最后都返回相应的结果。优化器的作用就是找到这其中最好的执行计划。</p>
+<p>MySQL使用基于成本的优化器，它尝试预测一个查询使用某种执行计划时的成本，并选择其中成本最小的一个。在MySQL可以通过查询当前会话的last_query_cost的值来得到其计算当前查询的成本。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">mysql&gt; select * from t_message limit 10;</div><div class="line">...省略结果集</div><div class="line"></div><div class="line">mysql&gt; show status like &apos;last_query_cost&apos;;</div><div class="line">+-----------------+-------------+</div><div class="line">| Variable_name   | Value       |</div><div class="line">+-----------------+-------------+</div><div class="line">| Last_query_cost | 6391.799000 |</div><div class="line">+-----------------+-------------+</div></pre></td></tr></table></figure></p>
+<p>示例中的结果表示优化器认为大概需要做6391个数据页的随机查找才能完成上面的查询。这个结果是根据一些列的统计信息计算得来的，这些统计信息包括：每张表或者索引的页面个数、索引的基数、索引和数据行的长度、索引的分布情况等等。</p>
+<p>有非常多的原因会导致MySQL选择错误的执行计划，比如统计信息不准确、不会考虑不受其控制的操作成本（用户自定义函数、存储过程）、MySQL认为的最优跟我们想的不一样（我们希望执行时间尽可能短，但MySQL值选择它认为成本小的，但成本小并不意味着执行时间短）等等。</p>
+<p>MySQL的查询优化器是一个非常复杂的部件，它使用了非常多的优化策略来生成一个最优的执行计划：</p>
+<ul>
+<li>重新定义表的关联顺序（多张表关联查询时，并不一定按照SQL中指定的顺序进行，但有一些技巧可以指定关联顺序）</li>
+<li>优化MIN()和MAX()函数（找某列的最小值，如果该列有索引，只需要查找B+Tree索引最左端，反之则可以找到最大值，具体原理见下文）</li>
+<li>提前终止查询（比如：使用Limit时，查找到满足数量的结果集后会立即终止查询）</li>
+<li>优化排序（在老版本MySQL会使用两次传输排序，即先读取行指针和需要排序的字段在内存中对其排序，然后再根据排序结果去读取数据行，而新版本采用的是单次传输排序，也就是一次读取所有的数据行，然后根据给定的列排序。对于I/O密集型应用，效率会高很多）</li>
+</ul>
+<p>随着MySQL的不断发展，优化器使用的优化策略也在不断的进化，这里仅仅介绍几个非常常用且容易理解的优化策略，其他的优化策略，大家自行查阅吧。</p>
+<h3 id="查询执行引擎"><a href="#查询执行引擎" class="headerlink" title="查询执行引擎"></a>查询执行引擎</h3><p>在完成解析和优化阶段以后，MySQL会生成对应的执行计划，查询执行引擎根据执行计划给出的指令逐步执行得出结果。整个执行过程的大部分操作均是通过调用存储引擎实现的接口来完成，这些接口被称为handler API。查询过程中的每一张表由一个handler实例表示。实际上，MySQL在查询优化阶段就为每一张表创建了一个handler实例，优化器可以根据这些实例的接口来获取表的相关信息，包括表的所有列名、索引统计信息等。存储引擎接口提供了非常丰富的功能，但其底层仅有几十个接口，这些接口像搭积木一样完成了一次查询的大部分操作。</p>
+<h3 id="返回结果给客户端"><a href="#返回结果给客户端" class="headerlink" title="返回结果给客户端"></a>返回结果给客户端</h3><p>查询执行的最后一个阶段就是将结果返回给客户端。即使查询不到数据，MySQL仍然会返回这个查询的相关信息，比如改查询影响到的行数以及执行时间等等。</p>
+<p>如果查询缓存被打开且这个查询可以被缓存，MySQL也会将结果存放到缓存中。</p>
+<p>结果集返回客户端是一个增量且逐步返回的过程。有可能MySQL在生成第一条结果时，就开始向客户端逐步返回结果集了。这样服务端就无须存储太多结果而消耗过多内存，也可以让客户端第一时间获得返回结果。需要注意的是，结果集中的每一行都会以一个满足①中所描述的通信协议的数据包发送，再通过TCP协议进行传输，在传输过程中，可能对MySQL的数据包进行缓存然后批量发送。</p>
+<p>回头总结一下MySQL整个查询执行过程，总的来说分为5个步骤：</p>
+<ul>
+<li>1 客户端向MySQL服务器发送一条查询请求</li>
+<li>2 服务器首先检查查询缓存，如果命中缓存，则立刻返回存储在缓存中的结果。否则进入下一阶段</li>
+<li>3 服务器进行SQL解析、预处理、再由优化器生成对应的执行计划</li>
+<li>4 MySQL根据执行计划，调用存储引擎的API来执行查询</li>
+<li>5 将结果返回给客户端，同时缓存查询结果<h3 id="性能优化建议"><a href="#性能优化建议" class="headerlink" title="性能优化建议"></a>性能优化建议</h3></li>
+</ul>
+<p>看了这么多，你可能会期待给出一些优化手段，是的，下面会从3个不同方面给出一些优化建议。但请等等，还有一句忠告要先送给你：不要听信你看到的关于优化的“绝对真理”，包括本文所讨论的内容，而应该是在实际的业务场景下通过测试来验证你关于执行计划以及响应时间的假设。</p>
+<h3 id="Scheme设计与数据类型优化"><a href="#Scheme设计与数据类型优化" class="headerlink" title="Scheme设计与数据类型优化"></a>Scheme设计与数据类型优化</h3><p>选择数据类型只要遵循小而简单的原则就好，越小的数据类型通常会更快，占用更少的磁盘、内存，处理时需要的CPU周期也更少。越简单的数据类型在计算时需要更少的CPU周期，比如，整型就比字符操作代价低，因而会使用整型来存储ip地址，使用DATETIME来存储时间，而不是使用字符串。</p>
+<p>这里总结几个可能容易理解错误的技巧：</p>
+<p>通常来说把可为NULL的列改为NOT NULL不会对性能提升有多少帮助，只是如果计划在列上创建索引，就应该将该列设置为NOT NULL。</p>
+<p>对整数类型指定宽度，比如INT(11)，没有任何卵用。INT使用16为存储空间，那么它的表示范围已经确定，所以INT(1)和INT(20)对于存储和计算是相同的。</p>
+<p>UNSIGNED表示不允许负值，大致可以使正数的上限提高一倍。比如TINYINT存储范围是-128 ~ 127，而UNSIGNED TINYINT存储的范围却是0 - 255。</p>
+<p>通常来讲，没有太大的必要使用DECIMAL数据类型。即使是在需要存储财务数据时，仍然可以使用BIGINT。比如需要精确到万分之一，那么可以将数据乘以一百万然后使用BIGINT存储。这样可以避免浮点数计算不准确和DECIMAL精确计算代价高的问题。</p>
+<p>TIMESTAMP使用4个字节存储空间，DATETIME使用8个字节存储空间。因而，TIMESTAMP只能表示1970 - 2038年，比DATETIME表示的范围小得多，而且TIMESTAMP的值因时区不同而不同。</p>
+<p>大多数情况下没有使用枚举类型的必要，其中一个缺点是枚举的字符串列表是固定的，添加和删除字符串（枚举选项）必须使用ALTER TABLE（如果只只是在列表末尾追加元素，不需要重建表）。</p>
+<p>schema的列不要太多。原因是存储引擎的API工作时需要在服务器层和存储引擎层之间通过行缓冲格式拷贝数据，然后在服务器层将缓冲内容解码成各个列，这个转换过程的代价是非常高的。如果列太多而实际使用的列又很少的话，有可能会导致CPU占用过高。</p>
+<p>大表ALTER TABLE非常耗时，MySQL执行大部分修改表结果操作的方法是用新的结构创建一个张空表，从旧表中查出所有的数据插入新表，然后再删除旧表。尤其当内存不足而表又很大，而且还有很大索引的情况下，耗时更久。当然有一些奇淫技巧可以解决这个问题，有兴趣可自行查阅。</p>
+<h3 id="创建高性能索引"><a href="#创建高性能索引" class="headerlink" title="创建高性能索引"></a>创建高性能索引</h3><p>索引是提高MySQL查询性能的一个重要途径，但过多的索引可能会导致过高的磁盘使用率以及过高的内存占用，从而影响应用程序的整体性能。应当尽量避免事后才想起添加索引，因为事后可能需要监控大量的SQL才能定位到问题所在，而且添加索引的时间肯定是远大于初始添加索引所需要的时间，可见索引的添加也是非常有技术含量的。</p>
+<p>接下来将向你展示一系列创建高性能索引的策略，以及每条策略其背后的工作原理。但在此之前，先了解与索引相关的一些算法和数据结构，将有助于更好的理解后文的内容。</p>
+<h3 id="索引相关的数据结构和算法"><a href="#索引相关的数据结构和算法" class="headerlink" title="索引相关的数据结构和算法"></a>索引相关的数据结构和算法</h3><p>通常我们所说的索引是指B-Tree索引，它是目前关系型数据库中查找数据最为常用和有效的索引，大多数存储引擎都支持这种索引。使用B-Tree这个术语，是因为MySQL在CREATE TABLE或其它语句中使用了这个关键字，但实际上不同的存储引擎可能使用不同的数据结构，比如InnoDB就是使用的B+Tree。</p>
+<p>B+Tree中的B是指balance，意为平衡。需要注意的是，B+树索引并不能找到一个给定键值的具体行，它找到的只是被查找数据行所在的页，接着数据库会把页读入到内存，再在内存中进行查找，最后得到要查找的数据。</p>
+<p>在介绍B+Tree前，先了解一下二叉查找树，它是一种经典的数据结构，其左子树的值总是小于根的值，右子树的值总是大于根的值，如下图①。如果要在这课树中查找值为5的记录，其大致流程：先找到根，其值为6，大于5，所以查找左子树，找到3，而5大于3，接着找3的右子树，总共找了3次。同样的方法，如果查找值为8的记录，也需要查找3次。所以二叉查找树的平均查找次数为(3 + 3 + 3 + 2 + 2 + 1) / 6 = 2.3次，而顺序查找的话，查找值为2的记录，仅需要1次，但查找值为8的记录则需要6次，所以顺序查找的平均查找次数为：(1 + 2 + 3 + 4 + 5 + 6) / 6 = 3.3次，因为大多数情况下二叉查找树的平均查找速度比顺序查找要快。</p>
+<h5 id="余下原文地址：http-www-jianshu-com-p-d7665192aaaf"><a href="#余下原文地址：http-www-jianshu-com-p-d7665192aaaf" class="headerlink" title="余下原文地址：http://www.jianshu.com/p/d7665192aaaf"></a><a href="http://www.jianshu.com/p/d7665192aaaf" target="_blank" rel="external">余下原文地址：http://www.jianshu.com/p/d7665192aaaf</a></h5>
+        </div>
+
+        <blockquote class="post-copyright">
+    <div class="content">
+        
+<span class="post-time">
+    最后更新时间：<time datetime="2017-05-01T10:10:43.000Z" itemprop="dateUpdated">2017年5月1日 18:10</time>
+</span><br>
+
+
+        这里写留言或版权声明：<a href="/2017/05/01/c19527s2/" target="_blank" rel="external">http://renpingjun.cn/2017/05/01/c19527s2/</a>
+    </div>
+    <footer>
+        <a href="http://renpingjun.cn">
+            <img src="/img/logo.jpeg" alt="仁平君">
+            仁平君
+        </a>
+    </footer>
+</blockquote>
+
+        
+<div class="page-reward">
+    <a id="rewardBtn" href="javascript:;" class="page-reward-btn waves-effect waves-circle waves-light">赏</a>
+</div>
+
+
+
+        <div class="post-footer">
+            
+	<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/mysql/">mysql</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/数据库/">数据库</a></li></ul>
+
+
+            
+<div class="page-share-wrap">
+    
+
+<div class="page-share" id="pageShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://renpingjun.cn/2017/05/01/c19527s2/&title=《MySQL 优化原理[转]》 — 仁平君&pic=http://renpingjun.cn/img/logo.jpeg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://renpingjun.cn/2017/05/01/c19527s2/&title=《MySQL 优化原理[转]》 — 仁平君&source=Open your API to change the internet, open your mind to change the world." data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://renpingjun.cn/2017/05/01/c19527s2/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《MySQL 优化原理[转]》 — 仁平君&url=http://renpingjun.cn/2017/05/01/c19527s2/&via=http://renpingjun.cn" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://renpingjun.cn/2017/05/01/c19527s2/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+
+    <a href="javascript:;" id="shareFab" class="page-share-fab waves-effect waves-circle">
+        <i class="icon icon-share-alt icon-lg"></i>
+    </a>
+</div>
+
+
+
+        </div>
+    </div>
+
+    
+<nav class="post-nav flex-row flex-justify-between flex-row-reverse">
+  
+
+  
+    <div class="waves-block waves-effect next">
+      <a href="/2017/05/01/c19537s2/" id="post-next" class="post-nav-link">
+        <div class="tips">Next <i class="icon icon-angle-right icon-lg icon-pl"></i></div>
+        <h4 class="title">MySQL 数据查询优化建议</h4>
+      </a>
+    </div>
+  
+</nav>
+
+
+
+    
+    
+            <!-- UY BEGIN -->
+<div id="uyan_frame"></div>
+<script type="text/javascript" src="http://v2.uyan.cc/code/uyan.js?uid=2128696"></script>
+<!-- UY END -->
+        
+
+</article>
+
+<div id="reward" class="page-modal reward-lay">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <h3 class="reward-title">
+        <i class="icon icon-quote-left"></i>
+        谢谢打赏~
+        <i class="icon icon-quote-right"></i>
+    </h3>
+    <ul class="reward-items">
+        
+        <li>
+            <img src="/img/Wechat.png" title="微信打赏二维码" alt="微信打赏二维码">
+            <p>微信</p>
+        </li>
+        
+
+        
+        <li>
+            <img src="/img/alipay.png" title="支付宝打赏二维码" alt="支付宝打赏二维码">
+            <p>支付宝</p>
+        </li>
+        
+    </ul>
+</div>
+
+
+
+</div>
+
+        <footer class="footer">
+    <div class="top">
+        
+<p>
+    <span id="busuanzi_container_site_uv" style='display:none'>
+        站点UV：<span id="busuanzi_value_site_uv"></span>
+    </span>
+    <span id="busuanzi_container_site_pv" style='display:none'>
+        站点PV：<span id="busuanzi_value_site_pv"></span>
+    </span>
+</p>
+
+
+        <p>
+            <span><a href="/atom.xml" target="_blank" class="rss" title="rss"><i class="icon icon-lg icon-rss"></i></a></span>
+            <span>博客内容遵循 <a href="http://creativecommons.org/licenses/by-nc-sa/4.0/" target="_blank">知识共享 署名 - 非商业性 - 相同方式共享 4.0协议</a></span>
+        </p>
+    </div>
+    <div class="bottom">
+        <p>
+            <!--<span>Power by <a href="http://hexo.io/" target="_blank">Hexo</a> Theme <a href="https://github.com/yscoder/hexo-theme-indigo" target="_blank">indigo</a></span>-->
+            <span>仁平君&copy;All Rights Reserved</span>
+            <span>2016 - 2017</span>
+        </p>
+    </div>
+</footer>
+<!--百度统计-->
+<script>
+    var _hmt = _hmt || [];
+    (function() {
+        var hm = document.createElement("script");
+        hm.src = "https://hm.baidu.com/hm.js?a1b12a851f7e118fcdaac2f8f624f832";
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(hm, s);
+    })();
+</script>
+
+    </main>
+    <div class="mask" id="mask"></div>
+<a href="javascript:;" id="gotop" class="waves-effect waves-circle waves-light"><span class="icon icon-lg icon-chevron-up"></span></a>
+
+
+
+<div class="global-share" id="globalShare">
+    <ul class="reset share-icons">
+      <li>
+        <a class="weibo share-sns" target="_blank" href="http://service.weibo.com/share/share.php?url=http://renpingjun.cn/2017/05/01/c19527s2/&title=《MySQL 优化原理[转]》 — 仁平君&pic=http://renpingjun.cn/img/logo.jpeg" data-title="微博">
+          <i class="icon icon-weibo"></i>
+        </a>
+      </li>
+      <li>
+        <a class="weixin share-sns wxFab" href="javascript:;" data-title="微信">
+          <i class="icon icon-weixin"></i>
+        </a>
+      </li>
+      <li>
+        <a class="qq share-sns" target="_blank" href="http://connect.qq.com/widget/shareqq/index.html?url=http://renpingjun.cn/2017/05/01/c19527s2/&title=《MySQL 优化原理[转]》 — 仁平君&source=Open your API to change the internet, open your mind to change the world." data-title=" QQ">
+          <i class="icon icon-qq"></i>
+        </a>
+      </li>
+      <li>
+        <a class="facebook share-sns" target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http://renpingjun.cn/2017/05/01/c19527s2/" data-title=" Facebook">
+          <i class="icon icon-facebook"></i>
+        </a>
+      </li>
+      <li>
+        <a class="twitter share-sns" target="_blank" href="https://twitter.com/intent/tweet?text=《MySQL 优化原理[转]》 — 仁平君&url=http://renpingjun.cn/2017/05/01/c19527s2/&via=http://renpingjun.cn" data-title=" Twitter">
+          <i class="icon icon-twitter"></i>
+        </a>
+      </li>
+      <li>
+        <a class="google share-sns" target="_blank" href="https://plus.google.com/share?url=http://renpingjun.cn/2017/05/01/c19527s2/" data-title=" Google+">
+          <i class="icon icon-google-plus"></i>
+        </a>
+      </li>
+    </ul>
+ </div>
+
+
+<div class="page-modal wx-share" id="wxShare">
+    <a class="close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAK4AAACuCAAAAACKZ2kyAAABxklEQVR42u3aQW7DIBAF0Nz/0q7UVaXW5A8DxJUeK0vBySOLEfzh9YrH9T1+Pt+N8Zzfn752DFxc3DY3//m7t8bLu5tf/QtwcXHPc/PiNeZexZEbcHFxn8kd7zfGM8ffiYuL+3+5+TalQ8fFxX0OtxpzzEUnnagFFxf3JHcuMF37vD3fxcXFXdSVyAtK9a1rauDi4p7hjtse0VEkaJ/MtV1vfwsXF/cIN2mN5AUox+VlERcX9zy3s6HJS1jeknlTWHFxcQ9yqxcvVsUoyTWOyZ0ULi7uFDdvjexYTN5u+SPFwcXF3cbN60M1+kwubVSbsri4uJ/idmKOzuWJwnxcXNzN3LnyND4yVRdf2Dbh4uIe4RY6LcWi0zne4OLifpZ7bRudgnVbNHFxcY9w55qs1dNVDioHpri4uBu4eaHpHJOqx5vbmbi4uAe5ySWMarTaSnDHhQwXF/cIt3qk2RGbLuj54OLiLuJWC0q14Tp3rTP5FBcXdze3s3HJF5C8FS0YFxf3ILcTdObVccFWBhcX92Hc6DZHu0S++WZcXNwHc5NYJI9R8tAWFxf3JHfuilWnBVttyuLi4p7kdgLT/vx+KIOLi7uU+wUbtIuy+lA8YAAAAABJRU5ErkJggg==" alt="微信分享二维码">
+</div>
+
+
+
+
+    <script src="//cdn.bootcss.com/node-waves/0.7.4/waves.min.js"></script>
+<script>
+var BLOG = { ROOT: '/', SHARE: true, REWARD: true };
+
+
+
+</script>
+
+<script src="/js/main.min.js?v=1.4.14"></script>
+
+
+<div class="search-panel" id="search-panel">
+    <ul class="search-result" id="search-result"></ul>
+</div>
+<template id="search-tpl">
+<li class="item">
+    <a href="{path}" class="waves-block waves-effect">
+        <div class="title ellipsis" title="{title}">{title}</div>
+        <div class="flex-row flex-middle">
+            <div class="tags ellipsis">
+                {tags}
+            </div>
+            <time class="flex-col time">{date}</time>
+        </div>
+    </a>
+</li>
+</template>
+
+<script src="/js/search.min.js?v=1.4.14" async></script>
+
+
+
+
+
+
+<script async src="//dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+
+</body>
+</html>
