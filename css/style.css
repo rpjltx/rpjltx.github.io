@@ -1,4 +1,9 @@
 /* reset */
+html,
+body {
+  user-select: none;
+  -webkit-user-select: none;
+}
 body,
 dl,
 dt,

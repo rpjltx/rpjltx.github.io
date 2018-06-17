@@ -4,12 +4,12 @@
   <subtitle>Open your API to change the internet, open your mind to change the world.</subtitle>
   <link href="/atom.xml" rel="self"/>
   
-  <link href="http://renpingjun.cn/"/>
+  <link href="http://www.renpingjun.top/"/>
   <updated>2018-05-31T06:16:41.977Z</updated>
-  <id>http://renpingjun.cn/</id>
+  <id>http://www.renpingjun.top/</id>
   
   <author>
-    <name>仁平君</name>
+    <name>Renpingjun</name>
     <email>ganrenping@gmail.com</email>
   </author>
   
@@ -17,8 +17,8 @@
   
   <entry>
     <title>Linux命令学习：数学运算</title>
-    <link href="http://renpingjun.cn/2018/05/15/heuaa1q2/"/>
-    <id>http://renpingjun.cn/2018/05/15/heuaa1q2/</id>
+    <link href="http://www.renpingjun.top/2018/05/15/heuaa1q2/"/>
+    <id>http://www.renpingjun.top/2018/05/15/heuaa1q2/</id>
     <published>2018-05-15T12:03:00.000Z</published>
     <updated>2018-05-31T06:16:41.977Z</updated>
     
@@ -84,76 +84,541 @@
     
     </summary>
     
-      <category term="Linux" scheme="http://renpingjun.cn/categories/Linux/"/>
+      <category term="Linux" scheme="http://www.renpingjun.top/categories/Linux/"/>
     
     
-      <category term="Linux" scheme="http://renpingjun.cn/tags/Linux/"/>
+      <category term="Linux" scheme="http://www.renpingjun.top/tags/Linux/"/>
     
   </entry>
   
   <entry>
-    <title>仁平君批评《白先勇细说红楼梦》:缘起</title>
-    <link href="http://renpingjun.cn/2018/05/15/hlm001/"/>
-    <id>http://renpingjun.cn/2018/05/15/hlm001/</id>
-    <published>2018-05-15T02:09:46.000Z</published>
-    <updated>2018-05-28T01:23:34.132Z</updated>
+    <title>JavaScript穷理尽微-字符串操作</title>
+    <link href="http://www.renpingjun.top/2018/03/04/ss3654gddh2/"/>
+    <id>http://www.renpingjun.top/2018/03/04/ss3654gddh2/</id>
+    <published>2018-03-04T01:03:00.000Z</published>
+    <updated>2018-06-17T10:40:15.514Z</updated>
     
-    <content type="html"><![CDATA[<p>曹雪芹的《红楼梦》是我后来才爱上的一部书。高中课本里节选了林黛玉进贾府一段，但当时觉得文章和其他课文一样，也没有什么特别之处。况且遣词用语生僻、人物关系繁杂、情节多为家庭琐事，实在是提不起来兴趣，读了一两回便无疾而终了。</p>
-<p>上了大学之后，大概是课业少时间多的缘故，加上后来古文的基础确实提升了不少，一个偶然的机会在图书馆翻阅到《红楼梦》，读了几回，竟然也觉得不是很难阅读，甚至觉得“妙啊，真是一部好书”。细细体会，小说以神话故事作为切入点，逐步进入现实，再将真事隐去，贾雨村言，这种神话架构非常具有象征意义，很是有趣。再有叙述语句多对仗工整，或排比、或押韵，读来朗朗上口，意境深远引人沉思。再后来，便一发不可收拾的爱上了这部书。本科毕业前读了不下十遍有余，不仅仅是书中所涉及到的诗词曲赋皆能背诵，甚至有些白话情节片段，也能随口背上那么一段。<br><img src="http://onjm2392k.bkt.clouddn.com/renpingjun/WX20180527-102726.png" alt=""><br>上个周末，我约了几个朋友去逛西郊植物园，途径曹雪芹故居（纪念馆），于是勾起了我重读红楼梦的兴趣。回来后就想着买一套评论研究型著作看看，恰看到白先勇新近出版的《白先勇细说红楼梦》，因此购之阅之，且看他如何细说。</p>
-<p>批评？ 文学上的事能说批评吗？当然这里的批评不是日常生活中用语“批评”的那个带有贬义的意思。基于美学意义的解释，批评指通过运用理论方法对作品进行梳理，加以批点评注。</p>
-<p><img src="http://onjm2392k.bkt.clouddn.com/renpingjun/WechatIMG279.jpeg" alt=""></p>
+    <content type="html"><![CDATA[<h2 id="一-模版字符串（template-string）"><a href="#一-模版字符串（template-string）" class="headerlink" title="一 模版字符串（template string）"></a>一 模版字符串（template string）</h2><p>在ES5以前，输出模版通常都是使用+对字符串进行拼接完成的，这种写法非常繁琐。于是ES6引入了模板字符串，模板字符串（template string）是增强版的字符串，用反引号（`）标识。它可以当作普通字符串使用，也可以用来定义多行字符串，或者在字符串中嵌入变量,变量名需要写在${}之中。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">let name = &quot;Renpingjun&quot;, time = &quot;today&quot;;</div><div class="line">let result = `Hello $&#123;name&#125;, how are you $&#123;time&#125;?`</div></pre></td></tr></table></figure>
+<h2 id="二-遍历器接口"><a href="#二-遍历器接口" class="headerlink" title="二 遍历器接口"></a>二 遍历器接口</h2><p>ES6为字符串添加了遍历器接口，使得字符串可以被for…of循环遍历。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">for (let codePoint of &apos;pepsi&apos;) &#123;</div><div class="line">  console.log(codePoint)</div><div class="line">&#125;</div><div class="line"></div><div class="line">// &quot;p&quot;</div><div class="line">// &quot;e&quot;</div><div class="line">// &quot;p&quot;</div><div class="line">// &quot;s&quot;</div><div class="line">// &quot;i&quot;</div></pre></td></tr></table></figure>
+<h2 id="三-常用方法"><a href="#三-常用方法" class="headerlink" title="三 常用方法"></a>三 常用方法</h2><h3 id="1-indexOf"><a href="#1-indexOf" class="headerlink" title="1 indexOf()"></a>1 indexOf()</h3><p>indexOf()方法可返回某个指定的字符串值在字符串中首次出现的位置,如果要检索的字符串值没有出现，则返回 -1。用法如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">let str = &quot;pepsi&quot;;</div><div class="line">console.log(str.indexOf(p)); //0</div></pre></td></tr></table></figure>
+<h3 id="2-includes-startsWith-endsWith"><a href="#2-includes-startsWith-endsWith" class="headerlink" title="2 includes(), startsWith(), endsWith()"></a>2 includes(), startsWith(), endsWith()</h3><ul>
+<li>includes()：返回布尔值，表示是否找到了参数字符串。</li>
+<li>startsWith()：返回布尔值，表示参数字符串是否在源字符串的头部。</li>
+<li>endsWith()：返回布尔值，表示参数字符串是否在源字符串的尾部。</li>
+</ul>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">let s = &apos;Hello world!&apos;;</div><div class="line"></div><div class="line">s.startsWith(&apos;Hello&apos;) // true</div><div class="line">s.endsWith(&apos;!&apos;) // true</div><div class="line">s.includes(&apos;o&apos;) // true</div></pre></td></tr></table></figure>
+<h3 id="3-repeat"><a href="#3-repeat" class="headerlink" title="3 repeat()"></a>3 repeat()</h3><p>repeat()方法返回一个新字符串，表示将原字符串重复n次。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&apos;x&apos;.repeat(3) // &quot;xxx&quot;</div></pre></td></tr></table></figure>
+<h3 id="4-padStart-，padEnd"><a href="#4-padStart-，padEnd" class="headerlink" title="4 padStart()，padEnd()"></a>4 padStart()，padEnd()</h3><p>如果某个字符串不够指定长度，会在头部或尾部补全。padStart()用于头部补全，padEnd()用于尾部补全。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">&apos;x&apos;.padStart(5, &apos;ab&apos;) // &apos;ababx&apos;</div><div class="line">&apos;x&apos;.padStart(4, &apos;ab&apos;) // &apos;abax&apos;</div><div class="line"></div><div class="line">&apos;x&apos;.padEnd(5, &apos;ab&apos;) // &apos;xabab&apos;</div><div class="line">&apos;x&apos;.padEnd(4, &apos;ab&apos;) // &apos;xaba&apos;</div></pre></td></tr></table></figure></p>
+<h2 id="四-字符串和正则表达式"><a href="#四-字符串和正则表达式" class="headerlink" title="四 字符串和正则表达式"></a>四 字符串和正则表达式</h2><p>字符串对象共有4个方法，可以使用正则表达式：match()、replace()、search()和split()。</p>
+<h3 id="1-match"><a href="#1-match" class="headerlink" title="1 match()"></a>1 match()</h3><p>match() 方法可在字符串内检索指定的值，或找到一个或多个正则表达式的匹配,返回的是指定的值。</p>
+<h3 id="2-replace"><a href="#2-replace" class="headerlink" title="2 replace()"></a>2 replace()</h3><p>replace() 方法用于在字符串中用一些字符替换另一些字符，或替换一个与正则表达式匹配的子串。</p>
+<h3 id="3-search"><a href="#3-search" class="headerlink" title="3 search()"></a>3 search()</h3><p>search() 方法用于检索字符串中指定的子字符串，或检索与正则表达式相匹配的子字符串。返回相匹配的字符串起始位置，如果没有找到任何匹配的子串，则返回 -1。</p>
+<h3 id="4-split"><a href="#4-split" class="headerlink" title="4 split()"></a>4 split()</h3><p>split() 方法用于把一个字符串分割成字符串数组。</p>
+<p><img src="http://onjm2392k.bkt.clouddn.com/renpingjun/vgrefs548hf347hd23ie9ysh23.jpg" alt=""></p>
 ]]></content>
     
     <summary type="html">
     
-      &lt;p&gt;曹雪芹的《红楼梦》是我后来才爱上的一部书。高中课本里节选了林黛玉进贾府一段，但当时觉得文章和其他课文一样，也没有什么特别之处。况且遣词用语生僻、人物关系繁杂、情节多为家庭琐事，实在是提不起来兴趣，读了一两回便无疾而终了。&lt;/p&gt;
-&lt;p&gt;上了大学之后，大概是课业少时间多的缘故
+      &lt;h2 id=&quot;一-模版字符串（template-string）&quot;&gt;&lt;a href=&quot;#一-模版字符串（template-string）&quot; class=&quot;headerlink&quot; title=&quot;一 模版字符串（template string）&quot;&gt;&lt;/a&gt;一 模版字符串（templa
     
     </summary>
     
-      <category term="读书之道" scheme="http://renpingjun.cn/categories/%E8%AF%BB%E4%B9%A6%E4%B9%8B%E9%81%93/"/>
+      <category term="JavaScript穷理尽微" scheme="http://www.renpingjun.top/categories/JavaScript%E7%A9%B7%E7%90%86%E5%B0%BD%E5%BE%AE/"/>
     
+    
+      <category term="JavaScript" scheme="http://www.renpingjun.top/tags/JavaScript/"/>
     
   </entry>
   
   <entry>
-    <title>JavaScript穷理尽微-数据类型与类型判断</title>
-    <link href="http://renpingjun.cn/2018/03/02/ss3654gddh/"/>
-    <id>http://renpingjun.cn/2018/03/02/ss3654gddh/</id>
-    <published>2018-03-02T05:03:00.000Z</published>
-    <updated>2018-05-28T03:02:26.598Z</updated>
+    <title>JavaScript穷理尽微-操作符</title>
+    <link href="http://www.renpingjun.top/2018/03/03/349a10oj7/"/>
+    <id>http://www.renpingjun.top/2018/03/03/349a10oj7/</id>
+    <published>2018-03-03T11:03:00.000Z</published>
+    <updated>2018-06-17T10:06:10.793Z</updated>
     
-    <content type="html"><![CDATA[<h2 id="变量"><a href="#变量" class="headerlink" title="变量"></a>变量</h2><h2 id="刚刚"><a href="#刚刚" class="headerlink" title="刚刚"></a>刚刚</h2>]]></content>
+    <content type="html"><![CDATA[<p>在JavaScript中，操作符是用来操作数据值的，适用于字符串、数值、布尔值，甚至对象。只不过在应用于对象时，相应的操作符会调用对象的valueOf() 或toString()方法，以便取得可以操作的值。常见的操作符包括算数操作符、关系操作符、相等操作符和位操作符等。</p>
+<h2 id="一-一元操作符"><a href="#一-一元操作符" class="headerlink" title="一 一元操作符"></a>一 一元操作符</h2><p>只能操作一个值的操作符叫做一元操作符。一元操作符是ECMAScript中最简单的操作符。</p>
+<h3 id="1-递增和递减"><a href="#1-递增和递减" class="headerlink" title="1 递增和递减"></a>1 递增和递减</h3><p>递增和递减有前置和后置两种算法类型，前置型就是位于要操作的变量之前，后置型就是位于要操作的变量之后。代码示例：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">let age = 24;</div><div class="line">++ age; //age = 25</div></pre></td></tr></table></figure></p>
+<p>在这个例子中，前置递增操作符把age的值变成了25。实际上这个效果等同于age = age + 1。相似地，前置递减操作会从变量中减去1。</p>
+<p>后置递增（减）操作符与前置递增（减）操作符的区别在于递增和递减是在包含它们的语句被求值之后才执行的。示例代码：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">let count1 = 2;</div><div class="line">let count2 = 20;</div><div class="line">let count3 = count1-- + count2; //22</div><div class="line">let count4 = count1 + count2; //21</div></pre></td></tr></table></figure></p>
+<h3 id="2-一元加和减"><a href="#2-一元加和减" class="headerlink" title="2 一元加和减"></a>2 一元加和减</h3><p>一元加操作符放在数值前对数值不会产生任何影响，放在非数值前时则会将该值隐式转换成数值类型。示例代码：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">let a = &quot;1.2&quot;,b = true, c = &quot;haha&quot;,</div><div class="line">    d = &#123;</div><div class="line">      valueOf:function()&#123;</div><div class="line">        return -1</div><div class="line">      &#125;</div><div class="line">    &#125;;</div><div class="line">a = +a; //1.2</div><div class="line">b = +b; //1</div><div class="line">c = +c; //NaN</div><div class="line">d = +d; //-1</div></pre></td></tr></table></figure></p>
+<p>一元减操作符主要用于表示负数，如将1转为-1。</p>
+<h2 id="二-位操作符"><a href="#二-位操作符" class="headerlink" title="二 位操作符"></a>二 位操作符</h2><p>位操作符用于在最基本的层次上，即按内存中表示数值的位来操作数值。在JavaScript中，所有数值都是按664位格式存储的，但位操作符并不直接操作64位的值，二是先将64位值转成32位，执行操作结束后在换成64位。</p>
+<p>对于有符号的整数，32位中的前31位用于表示整数的值，第32位用于表示数值的符号：0表示正数，1表示负数。这个表示符号的位叫做符号位，符号位的值决定了其他位数值的格式。其中正数以纯二进制格式存储，31位中的每一位都表示2的幂，从右向左依次是2<sup>0</sup>, 2<sup>1</sup>, 2<sup>2</sup>……依次类推。</p>
+<p>负数同样以二进制码存储，但使用的格式是二进制补码。计算一个数值的二进制补码过程如下：（1）求这个数值绝对值的二进制码；（2）求二进制反码，即将0换成1，将1换成0；（3）得到的二进制反码加1。</p>
+<p>需要注意的是，在处理有符号整数时，是不能访问位31的，ECMAScript会隐藏这些信息。也就是说，在以二进制字符串形式输出一个负数时，我们看到的只是这个数值的绝对值的二进制码前面加了个符号。<br>代码示例：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">let num = -18;</div><div class="line">console.log(num.toString(2)); // -10010</div></pre></td></tr></table></figure></p>
+<h3 id="1-按位非（NOT）"><a href="#1-按位非（NOT）" class="headerlink" title="1 按位非（NOT）"></a>1 按位非（NOT）</h3><p>按位非操作符由一个波浪线（～）表示，执行按位非的结果就是返回数值的反码。按位非操作的本质是：操作数的负值减1。示例代码：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">let num = 25;</div><div class="line">let num2 = ~num; //num2 = -26, 相当于num2 = -num1 -1</div></pre></td></tr></table></figure></p>
+<h3 id="2-按位与（AND）"><a href="#2-按位与（AND）" class="headerlink" title="2 按位与（AND）"></a>2 按位与（AND）</h3><p>按位与操作符由符号（&amp;）表示，它有两个操作符数。从本质上讲，按位与操作就是将两个数值的每一位对齐，然后根据下表规则对相同位置上的两个数执行AND操作。</p>
+<table>
+<thead>
+<tr>
+<th>第一个数值的位</th>
+<th>第二个数值的位</th>
+<th>结果</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+</tr>
+<tr>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+</tr>
+<tr>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+</tr>
+</tbody>
+</table>
+<p>示例代码：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">let result = 25 &amp; 3;</div><div class="line">console.log(result); //1</div></pre></td></tr></table></figure></p>
+<h3 id="3-按位或（OR）"><a href="#3-按位或（OR）" class="headerlink" title="3 按位或（OR）"></a>3 按位或（OR）</h3><p>按位或操作符由一个竖线（|）表示，和按位与操作符一样，它也有两个操作符数，操作方法也是将两个数值的每一位对齐，然后根据下表规则对相同位置上的两个数执行OR操作。</p>
+<table>
+<thead>
+<tr>
+<th>第一个数值的位</th>
+<th>第二个数值的位</th>
+<th>结果</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+</tr>
+<tr>
+<td>1</td>
+<td>0</td>
+<td>1</td>
+</tr>
+<tr>
+<td>0</td>
+<td>1</td>
+<td>1</td>
+</tr>
+<tr>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+</tr>
+</tbody>
+</table>
+<p>示例代码：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">let result = 25 | 3;</div><div class="line">console.log(result); //27</div></pre></td></tr></table></figure></p>
+<h3 id="4-按位异或（XOR）"><a href="#4-按位异或（XOR）" class="headerlink" title="4 按位异或（XOR）"></a>4 按位异或（XOR）</h3><p>按位异或操作符由一个插入符号（^）表示，也有连个操作符数。以下是按位异或的真值表。</p>
+<table>
+<thead>
+<tr>
+<th>第一个数值的位</th>
+<th>第二个数值的位</th>
+<th>结果</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>1</td>
+<td>0</td>
+</tr>
+<tr>
+<td>1</td>
+<td>0</td>
+<td>1</td>
+</tr>
+<tr>
+<td>0</td>
+<td>1</td>
+<td>1</td>
+</tr>
+<tr>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+</tr>
+</tbody>
+</table>
+<p>示例代码：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">let result = 25 | 3;</div><div class="line">console.log(result); //26</div></pre></td></tr></table></figure></p>
+<p>关于25和3的按位与、按位或、按位异或的底层操作如下图示：<br><img src="http://onjm2392k.bkt.clouddn.com/renpingjun/WechatIMG355.jpeg" alt=""></p>
+<h3 id="5-左移"><a href="#5-左移" class="headerlink" title="5 左移"></a>5 左移</h3><p>左移操作符由两个小于号（&lt;&lt;）表示。该操作符会将数值的所有位向左移动指定的位数，左移操作多出来的空位会以0来填充。需要注意的是左移不会影响操作的符号位。代码示例：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">let num = 2;          //等于二进制0000 0000 0000 0000 0000 0000 0000 0010</div><div class="line">let num2 = num &lt;&lt; 5; // 等于二进制0000 0000 0000 0000 0000 0000 0100 0000</div><div class="line">console.log(num2);   // 64</div><div class="line"></div><div class="line">let num3 = -2 &lt;&lt; 5;  // -64</div></pre></td></tr></table></figure>
+<h3 id="6-有符号右移"><a href="#6-有符号右移" class="headerlink" title="6 有符号右移"></a>6 有符号右移</h3><p>有符号的右移操作符由两个大于号（&gt;&gt;）表示，该操作符会将数值向右移动，但保留符号位。在移动过程中，原数值也会出现空位，只不过这次出现在原数值的左侧、符号位的右侧。而此时ECMAScript会用符号位的值来填充所有空位，以便得到一个完整的值。示例代码：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">let num4 = 64;;       // 等于二进制0000 0000 0000 0000 0000 0000 0100 0000</div><div class="line">let num5 = num4 &gt;&gt; 5; // 等于二进制0000 0000 0000 0000 0000 0000 0000 0010</div><div class="line">console.log(num5);    // 2</div></pre></td></tr></table></figure></p>
+<h3 id="7-无符号右移"><a href="#7-无符号右移" class="headerlink" title="7 无符号右移"></a>7 无符号右移</h3><p>无符号右移操作符由三个大于号（&gt;&gt;&gt;）表示，这个操作符会将数值的所有32位都向右移动。对正数来说，无符号右移和有符号右移结果相同。对负数来说，首先是无符号右移是以0来来填充右移过程中出现的空位，其次是无符号右移操作会把负数的二进制码当成正数的二进制码。这样导致的结果就是：由于负数以其绝对值的二进制补码形式表示，无符号右移后的结果非常之大。示例：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">let num6 = -64;</div><div class="line">let num7 = num6 &gt;&gt;&gt; 5</div><div class="line">console.log(num7); // 134217726</div></pre></td></tr></table></figure></p>
+<h2 id="三-逻辑操作符"><a href="#三-逻辑操作符" class="headerlink" title="三 逻辑操作符"></a>三 逻辑操作符</h2><p>逻辑操作符也叫布尔操作符，一共有三个：非（NOT）、与（AND）、或（OR）。</p>
+<h3 id="1-逻辑非"><a href="#1-逻辑非" class="headerlink" title="1 逻辑非"></a>1 逻辑非</h3><p>逻辑非操作符由一个叹号（！）表示，可应用于ECMAScript中任何类型的数据，返回结果都是一个布尔值。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">!123; // false</div><div class="line">!false; // true</div></pre></td></tr></table></figure></p>
+<h3 id="2-逻辑与"><a href="#2-逻辑与" class="headerlink" title="2 逻辑与"></a>2 逻辑与</h3><p>逻辑与操作符由两个和号（&amp;&amp;）表示，逻辑与的真值表如下：</p>
+<table>
+<thead>
+<tr>
+<th>第一个操作数</th>
+<th>第二个操作数</th>
+<th>结果</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>true</td>
+<td>true</td>
+<td>true</td>
+</tr>
+<tr>
+<td>true</td>
+<td>false</td>
+<td>false</td>
+</tr>
+<tr>
+<td>false</td>
+<td>true</td>
+<td>false</td>
+</tr>
+<tr>
+<td>false</td>
+<td>false</td>
+<td>false</td>
+</tr>
+</tbody>
+</table>
+<p>逻辑与操作可以应用于任何类型数据的操作。它的操作规则如下：（1）：如果第一个操作数是对象，则返回第二个操作数；（2）如果第二个操作数是对象，只有第一个操作数返回结果为true时，才返回该个对象；（3）如果两个操作数都是对象，则返回第二个操作数；（4）如果有一个操作数是null，则返回null；（5）如果有一个操作数是NaN，则返回NaN；（6）如果有一个操作数是undefined，则返回undefined。</p>
+<p>逻辑与操作属于短路操作，即如果第一个操作能够决定结果，则不进行第二个操作。</p>
+<h3 id="3-逻辑或"><a href="#3-逻辑或" class="headerlink" title="3 逻辑或"></a>3 逻辑或</h3><p>逻辑或操作符由两个竖线符号（||）表示，有两个操作数，其真值表如下所示：</p>
+<table>
+<thead>
+<tr>
+<th>第一个操作数</th>
+<th>第二个操作数</th>
+<th>结果</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>true</td>
+<td>true</td>
+<td>true</td>
+</tr>
+<tr>
+<td>true</td>
+<td>false</td>
+<td>true</td>
+</tr>
+<tr>
+<td>false</td>
+<td>true</td>
+<td>true</td>
+</tr>
+<tr>
+<td>false</td>
+<td>false</td>
+<td>false</td>
+</tr>
+</tbody>
+</table>
+<p>逻辑或的操作规则如下：（1）如果第一个操作数是对象，则返回第一个操作数；（2）如果第一个操作数的返回结果为false，则返回第二个操作数；（3）如果两个操作数都是对象，则返回第一个操作数；（4）如果两个操作数都是null，则返回null；（5）如果两个操作数都是NaN，则返回NaN；（6）如果两个操作数都是undefined，则返回undefined。</p>
+<p>和逻辑与操作符相似，逻辑或操作符也是短路操作符。我们可以利用逻辑或的特性来避免为变量赋null或undefined值：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">let info = preferredInfo || backupInfo</div></pre></td></tr></table></figure></p>
+<h2 id="四-乘性操作符"><a href="#四-乘性操作符" class="headerlink" title="四 乘性操作符"></a>四 乘性操作符</h2><p>ECMAScript定义了三个乘性操作符，分别是：乘法、除法和求模（取余）。</p>
+<h3 id="1-乘法"><a href="#1-乘法" class="headerlink" title="1 乘法"></a>1 乘法</h3><p>乘法操作符由一个星号（*）表示，用于计算两个数值的乘积。如果乘积超过了ECMAScript数值的表示范围，则返回Infinity或-Infinity。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">let result = 2 * 5;// 10</div></pre></td></tr></table></figure></p>
+<h3 id="2-除法"><a href="#2-除法" class="headerlink" title="2 除法"></a>2 除法</h3><p>除法操作符由一个斜线符号（/）表示，执行第二个操作数除第一个操作数的计算。同样的，如果商超过了ECMAScript数值的表示范围，则返回Infinity或-Infinity。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">let result = 48 / 3;// 16</div></pre></td></tr></table></figure>
+<h3 id="3-求模（取余）"><a href="#3-求模（取余）" class="headerlink" title="3 求模（取余）"></a>3 求模（取余）</h3><p>求模操作符由一个百分号（%）表示，执行第二个操作数除第一个操作数并返回余数的计算。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">let result = 16 % 3; // 1</div></pre></td></tr></table></figure>
+<h2 id="五-加性操作符"><a href="#五-加性操作符" class="headerlink" title="五 加性操作符"></a>五 加性操作符</h2><h3 id="1-加法操作符"><a href="#1-加法操作符" class="headerlink" title="1 加法操作符"></a>1 加法操作符</h3><p>加法操作符（+）用于计算两个数值的和。计算规则如下：（1）如果两个操作数都是数值，则执行常规的计算方法；（2）如果两个操作数有一个是字符串，则转成字符串后连个操作值拼接，如果两个都是字符串则直接拼接；（3）如果有一个操作数是对象、布尔，则调用他们的toString（）方法取得相应的字符串在进行拼接。示例代码：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">let result1 = 2 + 3; // 5</div><div class="line">let result2 = 2 + &quot;3&quot;; // &quot;23&quot;</div></pre></td></tr></table></figure>
+<h3 id="2-减法操作符"><a href="#2-减法操作符" class="headerlink" title="2 减法操作符"></a>2 减法操作符</h3><p>减法操作符（-）用于计算两个数值的差。计算规则如下：（1）如果两个操作数都是数值，则执行常规的计算方法；（2）如果有一个操作数是NaN，则返回NaN；（3）Infinity - Infinity = NaN，- Infinity - - Infinity = NaN，Infinity - -Infinity = Infinity， - Infinity - Infinity = Infinity；（4）如果有一个操作数是字符串、布尔、null或undefined，则先调用Number（）方法将其转成数值再进行计算；（5）如果一个操作数是对象，则先调用valueOf（）取得该对象的数值再进行计算，如果没有valueOf（）则调用toString（）并将得到的字符串转成数值再计算。示例代码：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">let result1 = 5 - true; // 4</div><div class="line">let result2 = NaN -2; // NaN</div><div class="line">let result3 = 5 - &quot;&quot;; // 5</div><div class="line">let result4 = 5 - &quot;2&quot;; // 3</div><div class="line">let result5 = 5 - null; // 5</div></pre></td></tr></table></figure>
+<h2 id="六-关系操作符"><a href="#六-关系操作符" class="headerlink" title="六 关系操作符"></a>六 关系操作符</h2><p>关系操作符用于两个数值进行比较，包括小于（&lt;）,大于（&gt;）,小于等于（&lt;=）,大于等于（&gt;=），返回结果都是一个布尔值。计算规则如下：（1）如果两个操作数都是数值，则执行数值比较；（2）如果两个操作数都是字符串，则比较两个操作数对应的字符编码值；（3）如果一个操作数是数值，则将另一个操作数转成数值再进行比较；（4）如果一个操作数是布尔，则先将其转成数值再进行比较；（5）如果一个操作数是对象，则先调用valueOf（）取得该对象的数值再进行计算，如果没有valueOf（）则调用toString（）并将得到的字符串转成数值再计算。</p>
+<h2 id="七-相等操作符"><a href="#七-相等操作符" class="headerlink" title="七 相等操作符"></a>七 相等操作符</h2><p>判断连个变量是否相等是编程中的一个非常重要的操作。ECMAScript提供了两组操作符：相等和不相等，全等和不全等。相等操作符由两个等号（==）表示，不相等操作符由叹号加等号（！=）表示，这两个操作符都会先转换操作数（通常称为强制转换），然后再进行比较。全等操作符（===）和不全等操作符（！==）则不会转换操作数类型，因此在判断式不仅比较数值是否相等，还比较类型是否一致。在实际项目开发中，为了保持代码的一致性，推荐使用全等操作符和不全等操作符。</p>
+<h2 id="八-条件操作符"><a href="#八-条件操作符" class="headerlink" title="八 条件操作符"></a>八 条件操作符</h2><p>条件操作符也叫三目运算符，其基本语法如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">let result = boolean_expression ? true_value : false_value</div></pre></td></tr></table></figure></p>
+<h2 id="九-赋值操作符"><a href="#九-赋值操作符" class="headerlink" title="九 赋值操作符"></a>九 赋值操作符</h2><p>赋值操作符由等号（=）表示，其作用是把右侧的值赋给左边的变量。如果在等号左边加上算数操作符或位操作符，就可以完成复合赋值操作（*=, /=, +=, -=等）。</p>
+<h2 id="十-逗号操作符"><a href="#十-逗号操作符" class="headerlink" title="十 逗号操作符"></a>十 逗号操作符</h2><p>使用逗号操作符可以在一条语句中执行多个操作。逗号操作符多用于声明多个变量。如下所示：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">let a = 12, b = &quot;pepsi&quot;, c = true;</div></pre></td></tr></table></figure></p>
+<p><img src="http://onjm2392k.bkt.clouddn.com/renpingjun/vgrefs548hf347hd23ie9ysh23.jpg" alt=""></p>
+]]></content>
     
     <summary type="html">
     
-      &lt;h2 id=&quot;变量&quot;&gt;&lt;a href=&quot;#变量&quot; class=&quot;headerlink&quot; title=&quot;变量&quot;&gt;&lt;/a&gt;变量&lt;/h2&gt;&lt;h2 id=&quot;刚刚&quot;&gt;&lt;a href=&quot;#刚刚&quot; class=&quot;headerlink&quot; title=&quot;刚刚&quot;&gt;&lt;/a&gt;刚刚&lt;/h2&gt;
+      &lt;p&gt;在JavaScript中，操作符是用来操作数据值的，适用于字符串、数值、布尔值，甚至对象。只不过在应用于对象时，相应的操作符会调用对象的valueOf() 或toString()方法，以便取得可以操作的值。常见的操作符包括算数操作符、关系操作符、相等操作符和位操作符等。&lt;/
     
     </summary>
     
-      <category term="JavaScript穷理尽微" scheme="http://renpingjun.cn/categories/JavaScript%E7%A9%B7%E7%90%86%E5%B0%BD%E5%BE%AE/"/>
+      <category term="JavaScript穷理尽微" scheme="http://www.renpingjun.top/categories/JavaScript%E7%A9%B7%E7%90%86%E5%B0%BD%E5%BE%AE/"/>
     
     
-      <category term="JavaScript" scheme="http://renpingjun.cn/tags/JavaScript/"/>
+      <category term="JavaScript" scheme="http://www.renpingjun.top/tags/JavaScript/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>JavaScript穷理尽微-数据类型</title>
+    <link href="http://www.renpingjun.top/2018/03/03/koi328d209j/"/>
+    <id>http://www.renpingjun.top/2018/03/03/koi328d209j/</id>
+    <published>2018-03-03T01:03:00.000Z</published>
+    <updated>2018-06-13T02:23:24.244Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="一-数据类型"><a href="#一-数据类型" class="headerlink" title="一 数据类型"></a>一 数据类型</h2><p>ECMAScript有7中数据类型，分别是Undefined、Null、布尔值（Boolean）、字符串（String）、数值（Number）、对象（Object）和Symbol。其中Symbol是ES6为了从根本上防止属性名命名冲突新增加的。</p>
+<h3 id="1-Undefined"><a href="#1-Undefined" class="headerlink" title="1 Undefined"></a>1 Undefined</h3><p>Undefined类型只有一个值，即特殊的undefined。在声明了一个变量但未对其进行初始化，这个变量的值就是undefined。</p>
+<h3 id="2-Null"><a href="#2-Null" class="headerlink" title="2 Null"></a>2 Null</h3><p>Null类型也只有一个值，即null，null值表示一个空对象指针。</p>
+<p>如果定义的变量准备在将来用于保存对象，那么应该在变量初始化时设为null。这样做的好处是只要检查null值就可以知道相应的变量是否已经保存了一个对象的引用。示例代码：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">if(data != null)&#123;</div><div class="line">  doSomething()</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<h3 id="3-Boolean"><a href="#3-Boolean" class="headerlink" title="3 Boolean"></a>3 Boolean</h3><p>Boolean类型有两个字面值：true和false。<br>Boolean()函数可以将任何数据类型的值转换为Boolean值。至于这个值是true还是false，则取决于要转换值的数据类型和实际值。</p>
+<table>
+<thead>
+<tr>
+<th>数据类型</th>
+<th>转换为true</th>
+<th>转换为false</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Boolean</td>
+<td>true</td>
+<td>false</td>
+</tr>
+<tr>
+<td>String</td>
+<td>非空字符</td>
+<td>“”</td>
+</tr>
+<tr>
+<td>Number</td>
+<td>非0数字</td>
+<td>0和NaM</td>
+</tr>
+<tr>
+<td>Object</td>
+<td>任何对象</td>
+<td>null</td>
+</tr>
+</tbody>
+</table>
+<h3 id="4-String"><a href="#4-String" class="headerlink" title="4 String"></a>4 String</h3><p>String类型即字符串，用于表示由0个或多个16位Unicode字符组成的字符序列，可以用引号表示。</p>
+<p>String数据类型包含一些特殊的字符字面量，叫转义符，用于表示非打印字符，或者具有其他用途的字符。</p>
+<table>
+<thead>
+<tr>
+<th>字面量</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>\n</td>
+<td>换行</td>
+</tr>
+<tr>
+<td>\t</td>
+<td>制表</td>
+</tr>
+<tr>
+<td>\b</td>
+<td>退格</td>
+</tr>
+<tr>
+<td>\r</td>
+<td>回车</td>
+</tr>
+<tr>
+<td>\</td>
+<td>斜杠</td>
+</tr>
+<tr>
+<td>\’</td>
+<td>引号</td>
+</tr>
+</tbody>
+</table>
+<p>字符串转换有两个函数：toString()和String()。由于null和undefined没有toString()方法，在不知道要转换的值是不是null和undefined时，可以使用String()方法，这个函数能够将任何类型的数值转换为字符串。String()方法转换规则如下：</p>
+<ul>
+<li>如果值有toString()方法，则调用该方法并返回相应的结果；</li>
+<li>如果值是null，则返回“null”；</li>
+<li>如果值是undefined，则返回“undefined”。</li>
+</ul>
+<h3 id="5-Number"><a href="#5-Number" class="headerlink" title="5 Number"></a>5 Number</h3><p>Number类型表示数值，通常包含两种数值：整数和浮点数。最基本的数值字面量格式是十进制，也是默认格式。</p>
+<p>除此之外还可以通过八进制和十六进制格式的字面量来表示。八进制字面值的第一位必须是0，然后是八进制数字序列（0-7）。如果字面值的数值超出了范围，那么前面的0将被忽略，后面的数值将被当作十进制进行解析。十六进制字面值的前两位必须是0x，后面跟任何十六进制数值（0-9，A-F），字母不区分大小写。注意：在进行算数计算时，不管是八进制还是十六进制都将被转换成十进制数值。</p>
+<p>需要特殊说明的是NaN，NaN是一个特殊的数值，这个数值表示一个本来要返回数值的操作数未返回数值的情况。NaN有两个特点：一是任何设计NaN的操作都会返回NaN，二是NaN与任何值都不相等，包括自身。针对这两个特点，ECMAScript定义了isNaN（）函数，用于判断所传值是否不是数值。</p>
+<p>关于数值转换有三个函数：Number(), parseInt(), parseFloat()。</p>
+<table>
+<thead>
+<tr>
+<th>数据类型</th>
+<th>Number()</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Number</td>
+<td>返回十进制的数值</td>
+</tr>
+<tr>
+<td>Boolean</td>
+<td>true转成1，false转成0</td>
+</tr>
+<tr>
+<td>null</td>
+<td>返回0</td>
+</tr>
+<tr>
+<td>undefined</td>
+<td>返回NaN</td>
+</tr>
+<tr>
+<td>String</td>
+<td>如果字符串为空则返回0；如果字符串只包含数字，则转成十进制数值；如果字符串包含有效的浮点格式，则转成对应的浮点数值；如果字符串中包含十六进制数值，则转成对应的十进制数值；其他情况返回NaN</td>
+</tr>
+<tr>
+<td>Object</td>
+<td>先调用valueOf()方法，然后依照上面规则转换；如果转换结果是NaN，则调用对象的toString()方法，然后再依照上面规则转换返回的字符串值</td>
+</tr>
+</tbody>
+</table>
+<p>parseInt() 函数可解析一个字符串，并返回一个整数。parseInt() 函数在转换字符串时，如果第一个字符不是数字或负号，则会返回NaN，空字符串也会返回NaN；</p>
+<p>parseFloat() 函数可解析一个字符串，并返回一个浮点数。对parseFloat() 函数来说，只有字符串的第一个小数点有效第二个小数点后面的将被忽略。</p>
+<h3 id="6-Object"><a href="#6-Object" class="headerlink" title="6 Object"></a>6 Object</h3><p>ECMAScript中的对象其实就是一组数据和方法的集合。对象可以通过new关键字+要创建的对象类型的名称来创建，如 var o = new Object(),实际开发中我们通常直接通过字面量来定义一个对象，如 var o = {}。</p>
+<h3 id="7-Symbol"><a href="#7-Symbol" class="headerlink" title="7 Symbol"></a>7 Symbol</h3><p>Symbol值通过Symbol函数生成。凡是属性名属于Symbol类型，就都是独一无二的，可以保证不会与其他属性名产生冲突。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">let s = Symbol();</div><div class="line"></div><div class="line">typeof s</div><div class="line">// &quot;symbol&quot;</div></pre></td></tr></table></figure></p>
+<p>关于Symbol类型的值，有两点需要注意：一是相同参数的Symbol函数的返回值是不相等的；二是Symbol值不能与其他类型的值进行运算。</p>
+<h2 id="二-数据类型判断"><a href="#二-数据类型判断" class="headerlink" title="二 数据类型判断"></a>二 数据类型判断</h2><h3 id="1-typeof"><a href="#1-typeof" class="headerlink" title="1 typeof"></a>1 typeof</h3><p>typeof是最常见的数据类型判断方法，可以根据不同的值返回7个结果，返回的类型都是字符串形式。示例：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">var a,b = &#123;&#125;,c = function()&#123;&#125;,d = Symbol();</div><div class="line">typeof a;// &quot;undefined&quot;</div><div class="line">typeof 2;// &quot;number&quot;</div><div class="line">typeof &quot;renpingjun&quot;;// &quot;string&quot;</div><div class="line">typeof true;// &quot;boolean&quot;</div><div class="line">typeof b;// &quot;object&quot;</div><div class="line">typeof c;// &quot;function&quot;</div><div class="line">typeof d;//&quot;symbol&quot;</div></pre></td></tr></table></figure>
+<p>使用typeof判断非常简单，到也会有一些问题，比如typeof null返回结果是object，而且在数组、正则、日期、对象上的判断都是返回object。由此可以引出另一个判断方法Object.prototype.toString()。</p>
+<p>ECMAScript的特殊对象类型：Array、Function、Math、Date、JSON、RegExp、Error，每种类型都各自代表一种独立的类，不同的类实例拥有不同的类特性以及对应的操作方式。</p>
+<h3 id="2-Object-prototype-toString"><a href="#2-Object-prototype-toString" class="headerlink" title="2 Object.prototype.toString"></a>2 Object.prototype.toString</h3><p>toString()方法返回一个描述某对象的字符串，如果此方法在自定义的对象中未被覆盖，则toString()返回”[object type]”,其中type是对象类型。<br>在使用toString()方法检测对象类型时，常用Object.prototype.toString.call()来检测。示例：</p>
+ <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">Object.prototype.toString.call(new Date());// [object Date]</div><div class="line">Object.prototype.toString.call(new String());// [object String]</div><div class="line">Object.prototype.toString.call(new Array());// [object Array]</div><div class="line">Object.prototype.toString.call(Symbol());// [object Symbol]</div><div class="line">Object.prototype.toString.call(Math);// [object Math]</div><div class="line">Object.prototype.toString.call(undefined);// [object Undefined]</div><div class="line">Object.prototype.toString.call(null);// [object Null]</div></pre></td></tr></table></figure>
+<h3 id="3-constructor"><a href="#3-constructor" class="headerlink" title="3 constructor"></a>3 constructor</h3><p>constructor 属性返回所有 JavaScript 变量的构造函数。因此我们可以使用 constructor 属性来查看对象是否为某类型，示例：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">function isArray(myArray) &#123;</div><div class="line">    return myArray.constructor.toString().indexOf(&quot;Array&quot;) &gt; -1;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<h2 id="三-数据类型转换"><a href="#三-数据类型转换" class="headerlink" title="三 数据类型转换"></a>三 数据类型转换</h2><p>在JavaScript中，数据类型转换方法有三种：分为转换函数、显式转换和隐式转换。转换函数包含上文提到的toString()、parseInt()、parseFloat()等方法。显式转换包括上文中提到的Boolean()、String()、Number()等方法。接下来主要谈谈隐式转换。</p>
+<h3 id="1-Number"><a href="#1-Number" class="headerlink" title="1 Number"></a>1 Number</h3><p>加减乘除以及取余等操作符都可以让字符串隐式转换成number。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">var a = &quot;234&quot;;</div><div class="line">a = +a;</div><div class="line">typeof a;// &quot;number&quot;</div></pre></td></tr></table></figure>
+<h3 id="2-String"><a href="#2-String" class="headerlink" title="2 String"></a>2 String</h3><p>使用连接符 +“”可以其他的类型转换成string类型。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">var num = 123;</div><div class="line">var str = num + &quot;&quot;;</div><div class="line">console.log(str, typeof str);//&quot;123&quot;,string</div></pre></td></tr></table></figure></p>
+<h3 id="3-Boolean-1"><a href="#3-Boolean-1" class="headerlink" title="3 Boolean"></a>3 Boolean</h3><p>使用取反运算符。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">var num = undefined;</div><div class="line">var res = !!num;</div><div class="line">console.log(res); //false</div><div class="line">console.log(typeof res);boolean</div></pre></td></tr></table></figure></p>
+<p><img src="http://onjm2392k.bkt.clouddn.com/renpingjun/vgrefs548hf347hd23ie9ysh23.jpg" alt=""></p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;一-数据类型&quot;&gt;&lt;a href=&quot;#一-数据类型&quot; class=&quot;headerlink&quot; title=&quot;一 数据类型&quot;&gt;&lt;/a&gt;一 数据类型&lt;/h2&gt;&lt;p&gt;ECMAScript有7中数据类型，分别是Undefined、Null、布尔值（Boolean）、字符串（S
+    
+    </summary>
+    
+      <category term="JavaScript穷理尽微" scheme="http://www.renpingjun.top/categories/JavaScript%E7%A9%B7%E7%90%86%E5%B0%BD%E5%BE%AE/"/>
+    
+    
+      <category term="JavaScript" scheme="http://www.renpingjun.top/tags/JavaScript/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>JavaScript穷理尽微-解构赋值</title>
+    <link href="http://www.renpingjun.top/2018/03/02/nw23jd23uejd9/"/>
+    <id>http://www.renpingjun.top/2018/03/02/nw23jd23uejd9/</id>
+    <published>2018-03-02T07:03:00.000Z</published>
+    <updated>2018-06-09T12:33:17.032Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="一-什么是解构赋值"><a href="#一-什么是解构赋值" class="headerlink" title="一 什么是解构赋值"></a>一 什么是解构赋值</h2><p>解构，deconstruction，原意为分解，拆解等。解构赋值本质上是一种匹配模式,只要等号两边的模式相同,那么就可以将值从数组或属性从对象拆解开来提取到不同的变量中。如果解构不成功，变量的值就等于undefined。</p>
+<h2 id="二-解构赋值举例"><a href="#二-解构赋值举例" class="headerlink" title="二 解构赋值举例"></a>二 解构赋值举例</h2><h3 id="1-数组"><a href="#1-数组" class="headerlink" title="1 数组"></a>1 数组</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">let [a, b, c] = [1, 2, 3];</div></pre></td></tr></table></figure>
+<p>示例代码表明，可以从数组中提取值，按照对应位置对变量进行赋值。</p>
+<h3 id="2-字符串"><a href="#2-字符串" class="headerlink" title="2 字符串"></a>2 字符串</h3><p>字符串也可以进行解构赋值，是因为字符串有长度，而且可以被转换成了一个类似数组的对象。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">let [a, b, c, d, e] = &apos;hello&apos;;</div></pre></td></tr></table></figure></p>
+<h3 id="3-对象"><a href="#3-对象" class="headerlink" title="3 对象"></a>3 对象</h3><p>对象的解构与数组解构的不同之处在于：数组的元素是按次序排列的，变量的取值由它的位置决定；而对象的属性没有次序，变量必须与属性同名，才能取到正确的值。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">let &#123; bar, foo &#125; = &#123; foo: &quot;aaa&quot;, bar: &quot;bbb&quot; &#125;;</div><div class="line"></div><div class="line">let &#123; foo: baz &#125; = &#123; foo: &apos;aaa&apos;, bar: &apos;bbb&apos; &#125;;</div></pre></td></tr></table></figure></p>
+<h3 id="4-数值和布尔值"><a href="#4-数值和布尔值" class="headerlink" title="4 数值和布尔值"></a>4 数值和布尔值</h3><p>解构赋值时，如果等号右边是数值和布尔值，则会先转为对象。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">let &#123;toString: s&#125; = 123;</div><div class="line">s === Number.prototype.toString // true</div><div class="line"></div><div class="line">let &#123;toString: s&#125; = true;</div><div class="line">s === Boolean.prototype.toString // true</div></pre></td></tr></table></figure></p>
+<h3 id="5-函数"><a href="#5-函数" class="headerlink" title="5 函数"></a>5 函数</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">[[1, 2], [3, 4]].map(([a, b]) =&gt; a + b); //[3,7]</div></pre></td></tr></table></figure>
+<h2 id="三-应用场景"><a href="#三-应用场景" class="headerlink" title="三 应用场景"></a>三 应用场景</h2><p>变量的解构赋值应用场景很多。</p>
+<h3 id="1-交换变量的值"><a href="#1-交换变量的值" class="headerlink" title="1 交换变量的值"></a>1 交换变量的值</h3><p>例如需要把 a = 3,b = 4 变成 a = 4, b = 3。<br>最常规的方法就是引入第三方变量：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">let a = 3,b = 4;</div><div class="line">let temp = a;</div><div class="line">a = b;</div><div class="line">b = temp;</div><div class="line">console.log(a, b);</div></pre></td></tr></table></figure></p>
+<p>这样虽然能实现，但引入了一个多余的变量。于是第二种方法出现了：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">let a = 3,b = 4;</div><div class="line">a += b;</div><div class="line">b = a - b;</div><div class="line">a -= b;</div><div class="line">console.log(a, b);</div></pre></td></tr></table></figure></p>
+<p>在不引入第三方变量的情况下实现了需求，但细心的同学就会发现这也是有问题的，即整型数据溢出，比如说对于32位字符最大表示有符号数字是2147483647，也就是Math.pow(2,31)-1，如果是2147483645和2147483646交换就失败了。<br>为了解决这个bug，我们可以利用一个数异或本身等于０和异或运算符合交换率。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">let a = 3,b = 4;</div><div class="line">  a ^= b;</div><div class="line">  b ^= a;</div><div class="line">  a ^= b;</div><div class="line">console.log(a, b);</div></pre></td></tr></table></figure></p>
+<p>需要说明的是：^ 即”异或“运算符，^ 运算符的特点是与0异或，保持原值；与本身异或，结果为0。</p>
+<p>ES6的解构赋值就厉害了，直接交换变量a和b的值，这样的写法不仅简洁，而且易读，语义非常清晰。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">let a = 3,b = 4;</div><div class="line">[a,b] = [b,a];</div></pre></td></tr></table></figure>
+<h3 id="2-从函数返回多个值"><a href="#2-从函数返回多个值" class="headerlink" title="2 从函数返回多个值"></a>2 从函数返回多个值</h3><p>函数只能返回一个值，如果要返回多个值，只能将它们放在数组或对象里返回。 我们可以利用解构赋值从函数返回多个值。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">function foo() &#123;</div><div class="line">  return [1, 2, 3];</div><div class="line">&#125;</div><div class="line">let [a, b, c] = foo();</div></pre></td></tr></table></figure></p>
+<h3 id="3-函数参数的定义"><a href="#3-函数参数的定义" class="headerlink" title="3 函数参数的定义"></a>3 函数参数的定义</h3><p>解构赋值可以方便地将一组参数与变量名对应起来。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">// 参数是一组有次序的值</div><div class="line">function f([x, y, z]) &#123; ... &#125;</div><div class="line">f([1, 2, 3]);</div><div class="line"></div><div class="line">// 参数是一组无次序的值</div><div class="line">function f(&#123;x, y, z&#125;) &#123; ... &#125;</div><div class="line">f(&#123;z: 3, y: 2, x: 1&#125;);</div></pre></td></tr></table></figure></p>
+<h3 id="4-提取JSON数据"><a href="#4-提取JSON数据" class="headerlink" title="4 提取JSON数据"></a>4 提取JSON数据</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">let jsonData = &#123;</div><div class="line">  id: 42,</div><div class="line">  status: &quot;OK&quot;,</div><div class="line">  data: [867, 5309]</div><div class="line">&#125;;</div><div class="line"></div><div class="line">let &#123; id, status, data: number &#125; = jsonData;</div><div class="line"></div><div class="line">console.log(id, status, number);</div></pre></td></tr></table></figure>
+<h3 id="5-函数参数的默认值"><a href="#5-函数参数的默认值" class="headerlink" title="5 函数参数的默认值"></a>5 函数参数的默认值</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">const compare = (property, method = &quot;ASC&quot;) =&gt; &#123;</div><div class="line">  return (obj1, obj2) =&gt; &#123;</div><div class="line">    let v1 = obj1[property],v2 = obj2[property];</div><div class="line">    if(method == &quot;DESC&quot;)</div><div class="line">        return v2 - v1</div><div class="line">     else</div><div class="line">        return v1 - v2</div><div class="line">  &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+<p>示例代码中，在参数中给method设置了默认值，就避免了在函数体内部再写let method  = method == “ASC”:”DESC”这样的语句。</p>
+<h3 id="6-遍历Map结构"><a href="#6-遍历Map结构" class="headerlink" title="6 遍历Map结构"></a>6 遍历Map结构</h3><p>Map结构原生支持Iterator接口，配合变量的解构赋值，获取键名和键值就非常方便。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">var map = new Map();</div><div class="line">map.set(&apos;first&apos;, &apos;hello&apos;);</div><div class="line">map.set(&apos;second&apos;, &apos;world&apos;);</div><div class="line"></div><div class="line">for (let [key, value] of map) &#123;</div><div class="line">  console.log(key + &quot; is &quot; + value);</div><div class="line">&#125;</div><div class="line">// first is hello</div><div class="line">// second is world</div></pre></td></tr></table></figure></p>
+<h3 id="7-输入模块的指定方法"><a href="#7-输入模块的指定方法" class="headerlink" title="7 输入模块的指定方法"></a>7 输入模块的指定方法</h3><p>加载模块时，往往需要指定输入那些方法。解构赋值使得输入语句非常清晰。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">const &#123; forEach, map, filter, flatten &#125; = require(&quot;arrayUtils&quot;);</div></pre></td></tr></table></figure></p>
+<p><img src="http://onjm2392k.bkt.clouddn.com/renpingjun/vgrefs548hf347hd23ie9ysh23.jpg" alt=""></p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;一-什么是解构赋值&quot;&gt;&lt;a href=&quot;#一-什么是解构赋值&quot; class=&quot;headerlink&quot; title=&quot;一 什么是解构赋值&quot;&gt;&lt;/a&gt;一 什么是解构赋值&lt;/h2&gt;&lt;p&gt;解构，deconstruction，原意为分解，拆解等。解构赋值本质上是一种匹配模式
+    
+    </summary>
+    
+      <category term="JavaScript穷理尽微" scheme="http://www.renpingjun.top/categories/JavaScript%E7%A9%B7%E7%90%86%E5%B0%BD%E5%BE%AE/"/>
+    
+    
+      <category term="JavaScript" scheme="http://www.renpingjun.top/tags/JavaScript/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>JavaScript穷理尽微-从变量的声明谈起</title>
+    <link href="http://www.renpingjun.top/2018/03/02/d2dj83yewq3/"/>
+    <id>http://www.renpingjun.top/2018/03/02/d2dj83yewq3/</id>
+    <published>2018-03-02T05:03:00.000Z</published>
+    <updated>2018-06-12T08:25:01.107Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="一-var关键字"><a href="#一-var关键字" class="headerlink" title="一 var关键字"></a>一 var关键字</h2><p>在ES5时代，我们都用var关键字来声明一个变量。语法是var操作符+变量名，例如 var message = “hello world”。但有过JavaScript编程经验的都会发现：实际上使用var是有问题的。</p>
+<h3 id="问题一：变量提升"><a href="#问题一：变量提升" class="headerlink" title="问题一：变量提升"></a>问题一：变量提升</h3><p>var命令会发生”变量提升“现象，即变量可以在声明之前使用，值为undefined。代码示例：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">var name = &quot;renpingjun&quot;;</div><div class="line">var f = function()&#123;</div><div class="line">  console.log(name);</div><div class="line">  if (false)&#123;</div><div class="line">    var name = &quot;rpj&quot;;</div><div class="line">    console.log(name);</div><div class="line">  &#125;</div><div class="line">&#125;</div><div class="line">f();// undefined</div></pre></td></tr></table></figure>
+<p>因为变量可以重复声明，而且ES5没有块级作用域，使得内部变量可可以覆盖外部变量。上面函数f执行后，输出结果为undefined，原因在于变量提升，导致内层的tmp变量覆盖了外层的tmp变量。</p>
+<h3 id="问题二：变量可以重复声明"><a href="#问题二：变量可以重复声明" class="headerlink" title="问题二：变量可以重复声明"></a>问题二：变量可以重复声明</h3><p>在上一个问题里，我们提到了变量可以反复声明。理论上，在同一个作用域变量是不可以重复声明的。但在ES5中使用var语句多次声明一个变量不仅是合法的,而且也不会造成任何错误。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">var foo = function()&#123;</div><div class="line">  var name = &quot;renpingjun&quot;;</div><div class="line">  var name = &quot;rpj&quot;;</div><div class="line">  console.log(name);</div><div class="line">&#125;</div><div class="line">foo();// rpj</div></pre></td></tr></table></figure></p>
+<h3 id="问题三：变量是全局的"><a href="#问题三：变量是全局的" class="headerlink" title="问题三：变量是全局的"></a>问题三：变量是全局的</h3><p>ES5是没有块级作用域一说的，它只有全局作用域和函数作用域，关于函数作用域我会在以后章节细说，这里只说全局作用域。说到全局作用域需要提一下顶层对象，顶层对象在浏览器环境指的是window对象，在Node指的是global对象。我们使用var关键字声明的变量都是全局的，而在ES5之中，顶层对象的属性与全局变量是等价的。代码示例：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">window.title = &quot;blog&quot;;</div><div class="line">console.log(title) // blog;</div><div class="line"></div><div class="line">var title = &quot;blog&quot;;</div><div class="line">console.log(window.title) // blog;</div></pre></td></tr></table></figure></p>
+<p>将顶层对象的属性与全局变量视为等同是不合理的，一是因为顶层对象的属性是随处可以读写的，这非常不利于模块化编程；二是window对象有实体含义，指的是浏览器的窗口对象，与全局变量有明显的差异。</p>
+<p>另外一个比较恰当的例子就是在for循环中，用来计数的循环变量会泄露为全局变量。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line">var str = &quot;renpingjun&quot;;</div><div class="line">for(var i = 0; i &lt; str.length; i++)&#123;</div><div class="line">  console.log(str[i]);</div><div class="line">&#125;</div><div class="line"></div><div class="line">console.log(i);// 5</div></pre></td></tr></table></figure>
+<p>在示例代码中，变量i只用来控制循环，但是循环结束后它并没有消失，反而泄露成了全局变量。</p>
+<h2 id="二-let和const关键字"><a href="#二-let和const关键字" class="headerlink" title="二 let和const关键字"></a>二 let和const关键字</h2><p>为了解决ES5中var关键字声明变量的问题，ES6提出了let关键字。let的主要作用是为 JavaScript 新增了块级作用域。<br>let的用法类似于var，但是所声明的变量，只在let命令所在的代码块内有效。代码示例：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">for (let i = 0; i &lt; 10; i++) &#123;&#125;</div><div class="line">console.log(i);</div><div class="line">//ReferenceError: i is not defined</div></pre></td></tr></table></figure></p>
+<p>示例代码中，计数器i只在for循环体内有效，在循环体外引用就会报错。</p>
+<p>为了改变ES5中变量提升这一语法现象，let关键字改变了语法行为，它所声明的变量一定要在声明后使用，否则报错。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">console.log(name); // 报错ReferenceError</div><div class="line">let name = &quot;renpingjun&quot;;</div></pre></td></tr></table></figure></p>
+<p>let不允许在相同作用域内，重复声明同一个变量，否则报错，因此也不能在函数内部重新声明参数。示例代码：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">function foo()&#123;</div><div class="line">  let a = 1;</div><div class="line">  let a = 2;</div><div class="line">  console.log(a);</div><div class="line">&#125;</div><div class="line">foo();// Uncaught SyntaxError: Identifier &apos;a&apos; has already been declared</div><div class="line"></div><div class="line">function func(arg) &#123;</div><div class="line">  let arg; // Uncaught SyntaxError: Identifier &apos;arg&apos; has already been declared</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>相比较ES5的var关键字，let关键字具有三个明显的特征：</p>
+<p><strong>1 let声明的变量只在它所在的代码块有效；</strong><br><strong>2 let关键字改变了变量提升的的语法现象；</strong><br><strong>3 在同一作用域，不允许重复声明变量。</strong></p>
+<p>在实际编程中，我们不仅需要变量，还需要常量。所谓常量，就是一经声明便不可修改的量。于是ES6增加了const关键字，常量一旦声明，值就不能改变，强行修改就会报错。这也就意味着，声明后就必须立即初始化，不能留到以后赋值。代码示例：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">const name = &quot;renpingjun&quot;;</div><div class="line">name = &apos;rpj&apos;; // Uncaught TypeError: Assignment to constant variable.</div><div class="line"></div><div class="line">const vm;</div><div class="line">vm = &quot;2.56&quot;; // Uncaught SyntaxError: Missing initializer in const declaration.</div></pre></td></tr></table></figure></p>
+<p><img src="http://onjm2392k.bkt.clouddn.com/renpingjun/vgrefs548hf347hd23ie9ysh23.jpg" alt=""></p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;一-var关键字&quot;&gt;&lt;a href=&quot;#一-var关键字&quot; class=&quot;headerlink&quot; title=&quot;一 var关键字&quot;&gt;&lt;/a&gt;一 var关键字&lt;/h2&gt;&lt;p&gt;在ES5时代，我们都用var关键字来声明一个变量。语法是var操作符+变量名，例如 var 
+    
+    </summary>
+    
+      <category term="JavaScript穷理尽微" scheme="http://www.renpingjun.top/categories/JavaScript%E7%A9%B7%E7%90%86%E5%B0%BD%E5%BE%AE/"/>
+    
+    
+      <category term="JavaScript" scheme="http://www.renpingjun.top/tags/JavaScript/"/>
     
   </entry>
   
   <entry>
     <title>JavaScript穷理尽微-导读</title>
-    <link href="http://renpingjun.cn/2018/03/02/ss34738dh/"/>
-    <id>http://renpingjun.cn/2018/03/02/ss34738dh/</id>
+    <link href="http://www.renpingjun.top/2018/03/02/ss34738dh/"/>
+    <id>http://www.renpingjun.top/2018/03/02/ss34738dh/</id>
     <published>2018-03-02T02:03:00.000Z</published>
-    <updated>2018-05-27T02:52:48.886Z</updated>
+    <updated>2018-06-17T11:18:54.670Z</updated>
     
     <content type="html"><![CDATA[<p>屈指一数，吾从事web前端开发迄今已有四载矣。心间颇多感慨，竟不知从何说起，可叹逝者如斯夫。</p>
 <p>期间，辗转几家公司，行业各有所属：教育、电商、保险等等不一而足，然立足开发，确是编程语言始相类矣，岂独前端之JavaScript哉。</p>
-<p>JavaScript自诞生以来便备受瞩目，不断发展，尤近两年，核心版本已至其六，其语言本身、应用场景、框架模式皆已今非昔比，非当日JavaScript可比肩矣。</p>
+<p>JavaScript自诞生以来便备受瞩目，不断发展，尤近两年，核心版本已逾其六，其语言本身、应用场景、框架模式皆已今非昔比，非当日JavaScript可比肩矣。</p>
 <p>吾亦从当年切图仔趋至开发工程师之流，实乃顺时势为之，不见有语言理论体系化之作，心甚愧之。况闻近日项目无新添之事仅维护耳，趁此忙中闲暇，欲重新系统学习JavaScript，名之曰JavaScript穷理尽微。</p>
 <p>这是JavaScript穷理尽微系列的第一篇，是为导读。</p>
-<p>二零一八年三月二日  于北京泰康三楼</p>
+<h2 id="目录"><a href="#目录" class="headerlink" title="目录"></a>目录</h2><div style="background:#f3fffe;padding:10px 20px;font-size:18px;"><a href="/2018/03/02/d2dj83yewq3/">一. 从变量的声明谈起</a><br><a href="/2018/03/03/koi328d209j/">二. 数据类型</a><br><a href="/2018/03/02/nw23jd23uejd9/">三. 解构赋值</a><br><a href="/2018/03/03/349a10oj7/">四. 操作符</a><br><a href="/2018/03/04/ss3654gddh2/">五. 字符串操作</a><br>……<br></div>
+
+
 <p><img src="http://onjm2392k.bkt.clouddn.com/renpingjun/WechatIMG277.jpeg" alt=""></p>
-<p>**</p>
-<h6 id="穷理尽微一词出自《文选·答魏太子笺》：“发言抗论，穷理尽微”，意思是系统深入地研究事物的原理，以达到精深奥妙的境地。"><a href="#穷理尽微一词出自《文选·答魏太子笺》：“发言抗论，穷理尽微”，意思是系统深入地研究事物的原理，以达到精深奥妙的境地。" class="headerlink" title="穷理尽微一词出自《文选·答魏太子笺》：“发言抗论，穷理尽微”，意思是系统深入地研究事物的原理，以达到精深奥妙的境地。"></a>穷理尽微一词出自《文选·答魏太子笺》：“发言抗论，穷理尽微”，意思是系统深入地研究事物的原理，以达到精深奥妙的境地。</h6>]]></content>
+<p><strong>穷理尽微：一词出自《文选·答魏太子笺》：“发言抗论，穷理尽微”，意思是系统深入地研究事物的原理，以达到精深奥妙的境地。</strong></p>
+<p><strong>学习书目：《JavaScript高级程序设计》、《精通JavaScript开发》、《ES6标准入门》、《JavaScript设计模式》</strong></p>
+<p>二零一八年三月二日  于北京泰康三楼</p>
+]]></content>
     
     <summary type="html">
     
@@ -163,41 +628,17 @@
     
     </summary>
     
-      <category term="JavaScript穷理尽微" scheme="http://renpingjun.cn/categories/JavaScript%E7%A9%B7%E7%90%86%E5%B0%BD%E5%BE%AE/"/>
+      <category term="JavaScript穷理尽微" scheme="http://www.renpingjun.top/categories/JavaScript%E7%A9%B7%E7%90%86%E5%B0%BD%E5%BE%AE/"/>
     
     
-      <category term="JavaScript" scheme="http://renpingjun.cn/tags/JavaScript/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>潜心修炼Angular-导读</title>
-    <link href="http://renpingjun.cn/2018/03/01/z3ff3fsdw3s/"/>
-    <id>http://renpingjun.cn/2018/03/01/z3ff3fsdw3s/</id>
-    <published>2018-03-01T02:09:46.000Z</published>
-    <updated>2018-05-26T10:52:05.671Z</updated>
-    
-    <content type="html"><![CDATA[<p>这是潜心修炼Angular系列的第一篇，是为导读。</p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;这是潜心修炼Angular系列的第一篇，是为导读。&lt;/p&gt;
-
-    
-    </summary>
-    
-      <category term="Angular" scheme="http://renpingjun.cn/categories/Angular/"/>
-    
-    
-      <category term="Angular" scheme="http://renpingjun.cn/tags/Angular/"/>
+      <category term="JavaScript" scheme="http://www.renpingjun.top/tags/JavaScript/"/>
     
   </entry>
   
   <entry>
     <title>http协议面试常见问题</title>
-    <link href="http://renpingjun.cn/2018/01/20/hd4q76ta/"/>
-    <id>http://renpingjun.cn/2018/01/20/hd4q76ta/</id>
+    <link href="http://www.renpingjun.top/2018/01/20/hd4q76ta/"/>
+    <id>http://www.renpingjun.top/2018/01/20/hd4q76ta/</id>
     <published>2018-01-20T08:34:40.000Z</published>
     <updated>2018-05-26T06:46:37.095Z</updated>
     
@@ -256,17 +697,17 @@
     
     </summary>
     
-      <category term="面试" scheme="http://renpingjun.cn/categories/%E9%9D%A2%E8%AF%95/"/>
+      <category term="面试" scheme="http://www.renpingjun.top/categories/%E9%9D%A2%E8%AF%95/"/>
     
     
-      <category term="http" scheme="http://renpingjun.cn/tags/http/"/>
+      <category term="http" scheme="http://www.renpingjun.top/tags/http/"/>
     
   </entry>
   
   <entry>
     <title>http协议：从看懂浏览器http报文开始</title>
-    <link href="http://renpingjun.cn/2018/01/18/hd4q76ta/"/>
-    <id>http://renpingjun.cn/2018/01/18/hd4q76ta/</id>
+    <link href="http://www.renpingjun.top/2018/01/18/hd4q76ta/"/>
+    <id>http://www.renpingjun.top/2018/01/18/hd4q76ta/</id>
     <published>2018-01-18T08:34:40.000Z</published>
     <updated>2018-05-26T06:45:16.635Z</updated>
     
@@ -298,14 +739,14 @@
     </summary>
     
     
-      <category term="http" scheme="http://renpingjun.cn/tags/http/"/>
+      <category term="http" scheme="http://www.renpingjun.top/tags/http/"/>
     
   </entry>
   
   <entry>
     <title>JavaScript正则表达式匹配汉字</title>
-    <link href="http://renpingjun.cn/2017/10/18/h473djdgs/"/>
-    <id>http://renpingjun.cn/2017/10/18/h473djdgs/</id>
+    <link href="http://www.renpingjun.top/2017/10/18/h473djdgs/"/>
+    <id>http://www.renpingjun.top/2017/10/18/h473djdgs/</id>
     <published>2017-10-18T12:03:00.000Z</published>
     <updated>2018-05-27T02:50:28.321Z</updated>
     
@@ -353,175 +794,9 @@
     </summary>
     
     
-      <category term="JavaScript" scheme="http://renpingjun.cn/tags/JavaScript/"/>
+      <category term="正则表达式" scheme="http://www.renpingjun.top/tags/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/"/>
     
-      <category term="正则表达式" scheme="http://renpingjun.cn/tags/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>JavaScript正则表达式匹配身份证号码</title>
-    <link href="http://renpingjun.cn/2017/10/17/1f35839j/"/>
-    <id>http://renpingjun.cn/2017/10/17/1f35839j/</id>
-    <published>2017-10-17T12:03:00.000Z</published>
-    <updated>2018-05-27T02:50:21.838Z</updated>
-    
-    <content type="html"><![CDATA[<p>我们先来看一段正则代码:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">/(^\d&#123;15&#125;$)|(^\d&#123;17&#125;([0-9]|X)$)/</div></pre></td></tr></table></figure></p>
-<p>非常眼熟对不对，这是长时间以来我们匹配身份证号码用的正则表达式，而且在google、百度搜索“身份证 正则”等相关关键字时，无一例外结果都是这个答案。</p>
-<p>这段代码验证的情况有两种，一种是15位数字，一种是18位（17位数字+1位数字或“X”），好像没有什么问题，但细究起来其实是不严谨的。比如说“123456789012345”是可以通过这个正则验证的，但它却不是一个身份证号码。</p>
-<p>无论是15位还是18位，身份证号码都有一套自己的编码规则，我们只要循着规则，不难写出正确（严谨）的身份证号码正则表达式。</p>
-<h2 id="一-从身份证号码编码规则说起"><a href="#一-从身份证号码编码规则说起" class="headerlink" title="一 从身份证号码编码规则说起"></a>一 从身份证号码编码规则说起</h2><h3 id="1-15位身份证号码编码规则"><a href="#1-15位身份证号码编码规则" class="headerlink" title="1 15位身份证号码编码规则"></a>1 15位身份证号码编码规则</h3><p>15位身份证号码是新中国第一代身份证号码，格式如：ABCDEFYYYYMMDDX</p>
-<ul>
-<li>地址码（ABCDEF）<br>表示登记户口时所在地的行政区划代码（省、市、县），如果行政区划进行了重新划分，同一个地方进行户口登记的可能存在地址码不一致的情况。行政区划代码按GB/T2260的规定执行。</li>
-<li>出生日期码（YYYYMMDD）<br>表示该居民的出生年月日，年4位数字，月和日分别用2位数字表示，如19491001，；出生日期码是按GB/T 7408的规定执行的。</li>
-<li>顺序码（X）<br>表示同一地址码区域内，同年、同月、同日生的人所编订的顺序号，根据自己身份证的顺序码就可以知道：与我们同年同月同日生的同性至少有多少个，且在我们之前登记户籍的有多少人。身份证顺序码的奇数分配给男性，偶数分配给女性。这就是为什么倒数第二位奇数表示男生，偶数表示女生。</li>
-</ul>
-<h3 id="2-18位身份证号码编码规则"><a href="#2-18位身份证号码编码规则" class="headerlink" title="2 18位身份证号码编码规则"></a>2 18位身份证号码编码规则</h3><p>1999年我国颁发了第二代居民身份证号，公民身份号码为18位，且终身不变。居民身份证格式如：ABCDEFYYYYMMDDXXXR</p>
-<p>同15位的差别在于顺序码加到了3位，并且增加了校验码（R），R之前的17位被称为本体码，R是根据本体码，按照校验码算法(ISO 7064:1983,MOD 11-2校)计算出来的。当我们输入身份号码进行实名认证的时候，根据校验码算法可以初步判断你输入身份证号码格式是否正确。</p>
-<p>校验码（R）的算法是：将本体码各位数字乘以对应加权因子并求和，除以11得到余数，根据余数通过校验码对照表查得校验码。</p>
-<ul>
-<li>加权因子</li>
-</ul>
-<table>
-<thead>
-<tr>
-<th>位置序号</th>
-<th>1</th>
-<th>2</th>
-<th>3</th>
-<th>4</th>
-<th>5</th>
-<th>6</th>
-<th>7</th>
-<th>8</th>
-<th>9</th>
-<th>10</th>
-<th>11</th>
-<th>12</th>
-<th>13</th>
-<th>14</th>
-<th>15</th>
-<th>16</th>
-<th>17</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>加权因子</td>
-<td>7</td>
-<td>9</td>
-<td>10</td>
-<td>5</td>
-<td>8</td>
-<td>4</td>
-<td>2</td>
-<td>1</td>
-<td>6</td>
-<td>3</td>
-<td>7</td>
-<td>9</td>
-<td>10</td>
-<td>5</td>
-<td>8</td>
-<td>4</td>
-<td>2</td>
-</tr>
-</tbody>
-</table>
-<ul>
-<li>校验码表</li>
-</ul>
-<table>
-<thead>
-<tr>
-<th>余数</th>
-<th>0</th>
-<th>1</th>
-<th>2</th>
-<th>3</th>
-<th>4</th>
-<th>5</th>
-<th>6</th>
-<th>7</th>
-<th>8</th>
-<th>9</th>
-<th>10</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>校验码</td>
-<td>1</td>
-<td>0</td>
-<td>X</td>
-<td>9</td>
-<td>8</td>
-<td>7</td>
-<td>6</td>
-<td>5</td>
-<td>4</td>
-<td>3</td>
-<td>2</td>
-</tr>
-</tbody>
-</table>
-<h3 id="3-应用举例"><a href="#3-应用举例" class="headerlink" title="3 应用举例"></a>3 应用举例</h3><p>某公民的身份证号码是34052419800101001X，</p>
-<ul>
-<li><p>1 本体码乘以加权因子：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">3*7+4*9+0*10+……0*4+1*2=189</div></pre></td></tr></table></figure>
-</li>
-<li><p>2 计算求和后除以11的余数</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">189%11=2</div></pre></td></tr></table></figure>
-</li>
-<li><p>3 在检验码中查询余数对应的检验码</p>
-</li>
-</ul>
-<p>余数2所对应的校验码是X，注意X必须大写</p>
-<h2 id="二-正则表达式匹配身份证号码"><a href="#二-正则表达式匹配身份证号码" class="headerlink" title="二 正则表达式匹配身份证号码"></a>二 正则表达式匹配身份证号码</h2><p>清楚了身份证号码的编码规则，再根据规则写出正则表达式就简单了。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div><div class="line">73</div><div class="line">74</div><div class="line">75</div><div class="line">76</div><div class="line">77</div><div class="line">78</div><div class="line">79</div><div class="line">80</div><div class="line">81</div><div class="line">82</div><div class="line">83</div><div class="line">84</div><div class="line">85</div><div class="line">86</div><div class="line">87</div><div class="line">88</div><div class="line">89</div></pre></td><td class="code"><pre><div class="line">isCardNo: function(value) &#123;</div><div class="line">	//验证身份证号方法</div><div class="line">	var area = &#123;</div><div class="line">		11: &quot;北京&quot;,</div><div class="line">		12: &quot;天津&quot;,</div><div class="line">		13: &quot;河北&quot;,</div><div class="line">		14: &quot;山西&quot;,</div><div class="line">		15: &quot;内蒙古&quot;,</div><div class="line">		21: &quot;辽宁&quot;,</div><div class="line">		22: &quot;吉林&quot;,</div><div class="line">		23: &quot;黑龙江&quot;,</div><div class="line">		31: &quot;上海&quot;,</div><div class="line">		32: &quot;江苏&quot;,</div><div class="line">		33: &quot;浙江&quot;,</div><div class="line">		34: &quot;安徽&quot;,</div><div class="line">		35: &quot;福建&quot;,</div><div class="line">		36: &quot;江西&quot;,</div><div class="line">		37: &quot;山东&quot;,</div><div class="line">		41: &quot;河南&quot;,</div><div class="line">		42: &quot;湖北&quot;,</div><div class="line">		43: &quot;湖南&quot;,</div><div class="line">		44: &quot;广东&quot;,</div><div class="line">		45: &quot;广西&quot;,</div><div class="line">		46: &quot;海南&quot;,</div><div class="line">		50: &quot;重庆&quot;,</div><div class="line">		51: &quot;四川&quot;,</div><div class="line">		52: &quot;贵州&quot;,</div><div class="line">		53: &quot;云南&quot;,</div><div class="line">		54: &quot;西藏&quot;,</div><div class="line">		61: &quot;陕西&quot;,</div><div class="line">		62: &quot;甘肃&quot;,</div><div class="line">		63: &quot;青海&quot;,</div><div class="line">		64: &quot;宁夏&quot;,</div><div class="line">		65: &quot;新疆&quot;,</div><div class="line">		71: &quot;台湾&quot;,</div><div class="line">		81: &quot;香港&quot;,</div><div class="line">		82: &quot;澳门&quot;,</div><div class="line">		91: &quot;国外&quot;</div><div class="line">	&#125;</div><div class="line">	var idcard, Y, JYM;</div><div class="line">	var idcard = value.toString();</div><div class="line">	var S, M;</div><div class="line">	var idcard_array = new Array();</div><div class="line">	idcard_array = idcard.split(&quot;&quot;);</div><div class="line">	if(area[parseInt(idcard.substr(0, 2))] == null) return false;</div><div class="line">	switch(idcard.length) &#123;</div><div class="line">		case 15:</div><div class="line">			if((parseInt(idcard.substr(6, 2)) + 1900) % 4 == 0 || ((parseInt(idcard.substr(6, 2)) + 1900) % 100 == 0 &amp;&amp; (parseInt(idcard.substr(6, 2)) + 1900) % 4 == 0)) &#123;</div><div class="line">				ereg = /^[1-9][0-9]&#123;5&#125;[0-9]&#123;2&#125;((01|03|05|07|08|10|12)(0[1-9]|[1-2][0-9]|3[0-1])|(04|06|09|11)(0[1-9]|[1-2][0-9]|30)|02(0[1-9]|[1-2][0-9]))[0-9]&#123;3&#125;$/; //测试出生日期的合法性</div><div class="line">			&#125; else &#123;</div><div class="line">				ereg = /^[1-9][0-9]&#123;5&#125;[0-9]&#123;2&#125;((01|03|05|07|08|10|12)(0[1-9]|[1-2][0-9]|3[0-1])|(04|06|09|11)(0[1-9]|[1-2][0-9]|30)|02(0[1-9]|1[0-9]|2[0-8]))[0-9]&#123;3&#125;$/; //测试出生日期的合法性</div><div class="line">			&#125;</div><div class="line">			if(ereg.test(idcard))</div><div class="line">				//return Errors[0];</div><div class="line">				var res = true;</div><div class="line">			else</div><div class="line">				//return Errors[2];</div><div class="line">				var res = false;</div><div class="line">			return res;</div><div class="line">			break;</div><div class="line">		case 18:</div><div class="line">			if(parseInt(idcard.substr(6, 4)) % 4 == 0 || (parseInt(idcard.substr(6, 4)) % 100 == 0 &amp;&amp; parseInt(idcard.substr(6, 4)) % 4 == 0)) &#123;</div><div class="line">				ereg = /^[1-9][0-9]&#123;5&#125;[1-2][0-9][0-9]&#123;2&#125;((01|03|05|07|08|10|12)(0[1-9]|[1-2][0-9]|3[0-1])|(04|06|09|11)(0[1-9]|[1-2][0-9]|30)|02(0[1-9]|[1-2][0-9]))[0-9]&#123;3&#125;[0-9Xx]$/; //闰年出生日期的合法性正则表达式</div><div class="line">			&#125; else &#123;</div><div class="line">				ereg = /^[1-9][0-9]&#123;5&#125;[1-2][0-9][0-9]&#123;2&#125;((01|03|05|07|08|10|12)(0[1-9]|[1-2][0-9]|3[0-1])|(04|06|09|11)(0[1-9]|[1-2][0-9]|30)|02(0[1-9]|1[0-9]|2[0-8]))[0-9]&#123;3&#125;[0-9Xx]$/; //平年出生日期的合法性正则表达式</div><div class="line">			&#125;</div><div class="line">			if(ereg.test(idcard)) &#123;</div><div class="line">				S = (parseInt(idcard_array[0]) + parseInt(idcard_array[10])) * 7 + (parseInt(idcard_array[1]) + parseInt(idcard_array[11])) * 9 + (parseInt(idcard_array[2]) + parseInt(idcard_array[12])) * 10 + (parseInt(idcard_array[3]) + parseInt(idcard_array[13])) * 5 + (parseInt(idcard_array[4]) + parseInt(idcard_array[14])) * 8 + (parseInt(idcard_array[5]) + parseInt(idcard_array[15])) * 4 + (parseInt(idcard_array[6]) + parseInt(idcard_array[16])) * 2 + parseInt(idcard_array[7]) * 1 + parseInt(idcard_array[8]) * 6 + parseInt(idcard_array[9]) * 3;</div><div class="line">				Y = S % 11;</div><div class="line">				M = &quot;F&quot;;</div><div class="line">				JYM = &quot;10X98765432&quot;;</div><div class="line">				M = JYM.substr(Y, 1);</div><div class="line">				if(M == idcard_array[17])</div><div class="line">					//return Errors[0];</div><div class="line">					var res = true;</div><div class="line">				else</div><div class="line">					//return Errors[3];</div><div class="line">					var res = false;</div><div class="line">			&#125; else</div><div class="line">				//return Errors[2];</div><div class="line">				res = false;</div><div class="line">			return res;</div><div class="line">			break;</div><div class="line">		default:</div><div class="line">			res = false;</div><div class="line">			return res;</div><div class="line">			break;</div><div class="line">	&#125;;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p><img src="http://onjm2392k.bkt.clouddn.com/renpingjun/vgrefs548hf347hd23ie9ysh23.jpg" alt=""></p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;我们先来看一段正则代码:&lt;br&gt;&lt;figure class=&quot;highlight plain&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;
-    
-    </summary>
-    
-    
-      <category term="JavaScript" scheme="http://renpingjun.cn/tags/JavaScript/"/>
-    
-      <category term="正则表达式" scheme="http://renpingjun.cn/tags/%E6%AD%A3%E5%88%99%E8%A1%A8%E8%BE%BE%E5%BC%8F/"/>
-    
-  </entry>
-  
-  <entry>
-    <title>MYSQL 基本操作指南</title>
-    <link href="http://renpingjun.cn/2017/04/29/c19517s2/"/>
-    <id>http://renpingjun.cn/2017/04/29/c19517s2/</id>
-    <published>2017-04-29T08:59:00.000Z</published>
-    <updated>2018-05-26T03:01:56.432Z</updated>
-    
-    <content type="html"><![CDATA[<p>环境：Linux Ubuntu14.04, MYSQL5.5</p>
-<h3 id="1-登录数据库服务器"><a href="#1-登录数据库服务器" class="headerlink" title="1.登录数据库服务器"></a>1.登录数据库服务器</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">mysql -u root -p (默认端口3306)</div><div class="line">·</div><div class="line">mysql -u root -p --protocol=tcp --host=localhost --port=3307 （通过tcp连接管理不同端口的MYSQL）</div><div class="line">·</div><div class="line">mysql -u root -p --socket=/tmp/mysql3307.sock （通过socket套接字连接管理不同端口的MYSQL）</div><div class="line">·</div><div class="line">mysql -u root -p 3306 -h 127.0.0.1 （通过端口和IP管理不同端口的MYSQL）</div></pre></td></tr></table></figure>
-<h3 id="2-数据库操作"><a href="#2-数据库操作" class="headerlink" title="2.数据库操作"></a>2.数据库操作</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">SHOW DATABASES; （显示所有数据库）</div><div class="line">·</div><div class="line">CREATE DATABASE vue_ghs; （创建一个名为vue_ghs的数据库）</div><div class="line">·</div><div class="line">DROP DATABASE vue_ghs; （删除数据库）</div><div class="line">·</div><div class="line">USE vue_ghs; （选择将要操作的数据库）</div><div class="line">·</div><div class="line">SOURCE vue_ghs.sql; （MYSQL导入.sql文件）</div></pre></td></tr></table></figure>
-<h3 id="3-表操作"><a href="#3-表操作" class="headerlink" title="3.表操作"></a>3.表操作</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div></pre></td><td class="code"><pre><div class="line">SHOW TABLES; （显示所有数据表）</div><div class="line">·</div><div class="line">CREATE TABLE `renpingjun` ( `id` INT( 5 ) UNSIGNED NOT NULL AUTO_INCREMENT , `username` VARCHAR( 20 ) NOT NULL , `password` CHAR( 32 ) NOT NULL , `time` DATETIME NOT NULL , `number` FLOAT( 10 ) NOT NULL , `content` TEXT NOT NULL , PRIMARY KEY ( `id` ) ) ENGINE = MYISAM ; （创建数据表renpingjun：在mysql&gt;后粘贴以下SQL语句，存储引擎为MYISAM，字段id为主键、唯一索引）</div><div class="line">·</div><div class="line">DESCRIBE renpingjun; （查看renpingjun数据表结构）</div><div class="line">·</div><div class="line">SELECT * FROM renpingjun; （从renpingjun数据表中检索所有记录）</div><div class="line">·</div><div class="line">SELECT * FROM renpingjun WHERE username = abc AND number=1 ORDER BY id DESC; （从renpingjun数据表中检索username = abc AND number=1的记录，按字段id降序排序）</div><div class="line">·</div><div class="line">INSERT INTO renpingjun (id, username, password, time, number, content) VALUES (, abc, 123456,</div><div class="line">2017-04-29 14:32:12, 23.41, hello world); （插入信息到renpingjun数据表）</div><div class="line">·</div><div class="line">UPDATE renpingjun SET content = hello china WHERE username = abc; （更新数据表信息）</div><div class="line">·</div><div class="line">UPDATE renpingjun SET content = REPLACE (content, aaa, bbb); （批量替换renpingjun数据表中content字段中的“aaa”为“bbb”）</div><div class="line">·</div><div class="line">DELETE FROM renpingjun; （清空renpingjun数据表）</div><div class="line">·</div><div class="line">DROP TABLE renpingjun; （删除renpingjun数据表）</div><div class="line">·</div><div class="line">REPAIR TABLE renpingjun; （修复损坏的renpingjun数据表）</div></pre></td></tr></table></figure>
-<h3 id="4-数据库权限操作"><a href="#4-数据库权限操作" class="headerlink" title="4.数据库权限操作"></a>4.数据库权限操作</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">GRANT ALL PRIVILEGES ON *.* TO renpingjun@% IDENTIFIED BY 123456; （创建一个具有root权限，可从任何IP登录的用户renpingjun，密码为123456）</div><div class="line">·</div><div class="line">GRANT SELECT , INSERT , UPDATE , DELETE , FILE , CREATE , DROP , INDEX , ALTER , CREATE</div><div class="line">TEMPORARY TABLES , CREATE VIEW , SHOW VIEW , CREATE ROUTINE, ALTER ROUTINE, EXECUTE ON</div><div class="line">*.* TO xiawei@192.168.1.% IDENTIFIED BY 123456; （创建一个具有数据操作、结构操作权限，只能从IP为192.168.1登录的用户xiawei,密码为123456）</div><div class="line">·</div><div class="line">DROP USER xiawei@%; （删除用户xiawei）</div></pre></td></tr></table></figure>
-<h3 id="5-登出数据库服务器"><a href="#5-登出数据库服务器" class="headerlink" title="5.登出数据库服务器"></a>5.登出数据库服务器</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">exit;</div></pre></td></tr></table></figure>
-<p><img src="http://onjm2392k.bkt.clouddn.com/renpingjun/vgrefs548hf347hd23ie9ysh23.jpg" alt=""></p>
-]]></content>
-    
-    <summary type="html">
-    
-      &lt;p&gt;环境：Linux Ubuntu14.04, MYSQL5.5&lt;/p&gt;
-&lt;h3 id=&quot;1-登录数据库服务器&quot;&gt;&lt;a href=&quot;#1-登录数据库服务器&quot; class=&quot;headerlink&quot; title=&quot;1.登录数据库服务器&quot;&gt;&lt;/a&gt;1.登录数据库服务器&lt;/h3&gt;&lt;fi
-    
-    </summary>
-    
-      <category term="数据库" scheme="http://renpingjun.cn/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/"/>
-    
-    
-      <category term="mysql" scheme="http://renpingjun.cn/tags/mysql/"/>
+      <category term="JavaScript" scheme="http://www.renpingjun.top/tags/JavaScript/"/>
     
   </entry>
   

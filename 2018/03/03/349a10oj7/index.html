@@ -1,0 +1,203 @@
+<!DOCTYPE html><html lang="en"><head><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="description" content="Open your API to change the internet, open your mind to change the world."><meta name="keywords" content="Renpingjun,仁平君,javascript,前端开发，web,终南山下,汉水之滨,仁平君者,独步武林"><title>JavaScript穷理尽微-操作符 | Renpingjun's Blog</title><link rel="stylesheet" type="text/css" href="/css/style.css?v=2.0.1"><link rel="stylesheet" type="text/css" href="/css/highlight.css?v=2.0.1"><link rel="Shortcut Icon" href="/favicon.ico"><link rel="bookmark" href="/favicon.ico"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><link rel="apple-touch-icon-precomposed" href="/apple-touch-icon.png"><link rel="alternate" type="application/atom+xml" href="/atom.xml"></head><body><div class="body_container"><div id="header"><div class="site-name"><h1 class="hidden">JavaScript穷理尽微-操作符</h1><a id="logo" href="/.">Renpingjun's Blog</a><p class="description">Open your API to change the internet, open your mind to change the world.</p></div><div id="nav-menu"><a href="/." class="current"><i class="fa fa-home"> Home</i></a><a href="/archives/"><i class="fa fa-archive"> Archive</i></a><a href="/about/"><i class="fa fa-user"> About</i></a><a href="/atom.xml"><i class="fa fa-rss"> RSS</i></a></div><div id="search-form"><div id="result-mask" class="hide"></div><label><input id="search-key" type="text" autocomplete="off" placeholder="Please input keywords"></label><div id="result-wrap" class="hide"><div id="search-result"></div></div><div class="hide"><template id="search-tpl"><div class="item"><a href="/{path}" title="{title}"><div class="title">{title}</div><div class="time">{date}</div><div class="tags">{tags}</div></a></div></template></div></div></div><div id="layout" class="layout-g"><div class="layout-l"><div class="content_container"><div class="post"><h1 class="post-title">JavaScript穷理尽微-操作符</h1><div class="post-meta"><a href="/2018/03/03/349a10oj7/#comments" class="comment-count"></a><p><span class="date">Mar 03, 2018</span><span><a href="/categories/JavaScript穷理尽微/" class="category">JavaScript穷理尽微</a></span><span><i id="busuanzi_container_page_pv"><i id="busuanzi_value_page_pv"></i><i>Hits</i></i></span></p></div><div class="post-content"><p>在JavaScript中，操作符是用来操作数据值的，适用于字符串、数值、布尔值，甚至对象。只不过在应用于对象时，相应的操作符会调用对象的valueOf() 或toString()方法，以便取得可以操作的值。常见的操作符包括算数操作符、关系操作符、相等操作符和位操作符等。</p>
+<h2 id="一-一元操作符"><a href="#一-一元操作符" class="headerlink" title="一 一元操作符"></a>一 一元操作符</h2><p>只能操作一个值的操作符叫做一元操作符。一元操作符是ECMAScript中最简单的操作符。</p>
+<h3 id="1-递增和递减"><a href="#1-递增和递减" class="headerlink" title="1 递增和递减"></a>1 递增和递减</h3><p>递增和递减有前置和后置两种算法类型，前置型就是位于要操作的变量之前，后置型就是位于要操作的变量之后。代码示例：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">let age = 24;</div><div class="line">++ age; //age = 25</div></pre></td></tr></table></figure></p>
+<p>在这个例子中，前置递增操作符把age的值变成了25。实际上这个效果等同于age = age + 1。相似地，前置递减操作会从变量中减去1。</p>
+<p>后置递增（减）操作符与前置递增（减）操作符的区别在于递增和递减是在包含它们的语句被求值之后才执行的。示例代码：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">let count1 = 2;</div><div class="line">let count2 = 20;</div><div class="line">let count3 = count1-- + count2; //22</div><div class="line">let count4 = count1 + count2; //21</div></pre></td></tr></table></figure></p>
+<h3 id="2-一元加和减"><a href="#2-一元加和减" class="headerlink" title="2 一元加和减"></a>2 一元加和减</h3><p>一元加操作符放在数值前对数值不会产生任何影响，放在非数值前时则会将该值隐式转换成数值类型。示例代码：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">let a = &quot;1.2&quot;,b = true, c = &quot;haha&quot;,</div><div class="line">    d = &#123;</div><div class="line">      valueOf:function()&#123;</div><div class="line">        return -1</div><div class="line">      &#125;</div><div class="line">    &#125;;</div><div class="line">a = +a; //1.2</div><div class="line">b = +b; //1</div><div class="line">c = +c; //NaN</div><div class="line">d = +d; //-1</div></pre></td></tr></table></figure></p>
+<p>一元减操作符主要用于表示负数，如将1转为-1。</p>
+<h2 id="二-位操作符"><a href="#二-位操作符" class="headerlink" title="二 位操作符"></a>二 位操作符</h2><p>位操作符用于在最基本的层次上，即按内存中表示数值的位来操作数值。在JavaScript中，所有数值都是按664位格式存储的，但位操作符并不直接操作64位的值，二是先将64位值转成32位，执行操作结束后在换成64位。</p>
+<p>对于有符号的整数，32位中的前31位用于表示整数的值，第32位用于表示数值的符号：0表示正数，1表示负数。这个表示符号的位叫做符号位，符号位的值决定了其他位数值的格式。其中正数以纯二进制格式存储，31位中的每一位都表示2的幂，从右向左依次是2<sup>0</sup>, 2<sup>1</sup>, 2<sup>2</sup>……依次类推。</p>
+<p>负数同样以二进制码存储，但使用的格式是二进制补码。计算一个数值的二进制补码过程如下：（1）求这个数值绝对值的二进制码；（2）求二进制反码，即将0换成1，将1换成0；（3）得到的二进制反码加1。</p>
+<p>需要注意的是，在处理有符号整数时，是不能访问位31的，ECMAScript会隐藏这些信息。也就是说，在以二进制字符串形式输出一个负数时，我们看到的只是这个数值的绝对值的二进制码前面加了个符号。<br>代码示例：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">let num = -18;</div><div class="line">console.log(num.toString(2)); // -10010</div></pre></td></tr></table></figure></p>
+<h3 id="1-按位非（NOT）"><a href="#1-按位非（NOT）" class="headerlink" title="1 按位非（NOT）"></a>1 按位非（NOT）</h3><p>按位非操作符由一个波浪线（～）表示，执行按位非的结果就是返回数值的反码。按位非操作的本质是：操作数的负值减1。示例代码：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">let num = 25;</div><div class="line">let num2 = ~num; //num2 = -26, 相当于num2 = -num1 -1</div></pre></td></tr></table></figure></p>
+<h3 id="2-按位与（AND）"><a href="#2-按位与（AND）" class="headerlink" title="2 按位与（AND）"></a>2 按位与（AND）</h3><p>按位与操作符由符号（&amp;）表示，它有两个操作符数。从本质上讲，按位与操作就是将两个数值的每一位对齐，然后根据下表规则对相同位置上的两个数执行AND操作。</p>
+<table>
+<thead>
+<tr>
+<th>第一个数值的位</th>
+<th>第二个数值的位</th>
+<th>结果</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+</tr>
+<tr>
+<td>1</td>
+<td>0</td>
+<td>0</td>
+</tr>
+<tr>
+<td>0</td>
+<td>1</td>
+<td>0</td>
+</tr>
+<tr>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+</tr>
+</tbody>
+</table>
+<p>示例代码：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">let result = 25 &amp; 3;</div><div class="line">console.log(result); //1</div></pre></td></tr></table></figure></p>
+<h3 id="3-按位或（OR）"><a href="#3-按位或（OR）" class="headerlink" title="3 按位或（OR）"></a>3 按位或（OR）</h3><p>按位或操作符由一个竖线（|）表示，和按位与操作符一样，它也有两个操作符数，操作方法也是将两个数值的每一位对齐，然后根据下表规则对相同位置上的两个数执行OR操作。</p>
+<table>
+<thead>
+<tr>
+<th>第一个数值的位</th>
+<th>第二个数值的位</th>
+<th>结果</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>1</td>
+<td>1</td>
+</tr>
+<tr>
+<td>1</td>
+<td>0</td>
+<td>1</td>
+</tr>
+<tr>
+<td>0</td>
+<td>1</td>
+<td>1</td>
+</tr>
+<tr>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+</tr>
+</tbody>
+</table>
+<p>示例代码：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">let result = 25 | 3;</div><div class="line">console.log(result); //27</div></pre></td></tr></table></figure></p>
+<h3 id="4-按位异或（XOR）"><a href="#4-按位异或（XOR）" class="headerlink" title="4 按位异或（XOR）"></a>4 按位异或（XOR）</h3><p>按位异或操作符由一个插入符号（^）表示，也有连个操作符数。以下是按位异或的真值表。</p>
+<table>
+<thead>
+<tr>
+<th>第一个数值的位</th>
+<th>第二个数值的位</th>
+<th>结果</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>1</td>
+<td>0</td>
+</tr>
+<tr>
+<td>1</td>
+<td>0</td>
+<td>1</td>
+</tr>
+<tr>
+<td>0</td>
+<td>1</td>
+<td>1</td>
+</tr>
+<tr>
+<td>0</td>
+<td>0</td>
+<td>0</td>
+</tr>
+</tbody>
+</table>
+<p>示例代码：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">let result = 25 | 3;</div><div class="line">console.log(result); //26</div></pre></td></tr></table></figure></p>
+<p>关于25和3的按位与、按位或、按位异或的底层操作如下图示：<br><img src="http://onjm2392k.bkt.clouddn.com/renpingjun/WechatIMG355.jpeg" alt=""></p>
+<h3 id="5-左移"><a href="#5-左移" class="headerlink" title="5 左移"></a>5 左移</h3><p>左移操作符由两个小于号（&lt;&lt;）表示。该操作符会将数值的所有位向左移动指定的位数，左移操作多出来的空位会以0来填充。需要注意的是左移不会影响操作的符号位。代码示例：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">let num = 2;          //等于二进制0000 0000 0000 0000 0000 0000 0000 0010</div><div class="line">let num2 = num &lt;&lt; 5; // 等于二进制0000 0000 0000 0000 0000 0000 0100 0000</div><div class="line">console.log(num2);   // 64</div><div class="line"></div><div class="line">let num3 = -2 &lt;&lt; 5;  // -64</div></pre></td></tr></table></figure>
+<h3 id="6-有符号右移"><a href="#6-有符号右移" class="headerlink" title="6 有符号右移"></a>6 有符号右移</h3><p>有符号的右移操作符由两个大于号（&gt;&gt;）表示，该操作符会将数值向右移动，但保留符号位。在移动过程中，原数值也会出现空位，只不过这次出现在原数值的左侧、符号位的右侧。而此时ECMAScript会用符号位的值来填充所有空位，以便得到一个完整的值。示例代码：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">let num4 = 64;;       // 等于二进制0000 0000 0000 0000 0000 0000 0100 0000</div><div class="line">let num5 = num4 &gt;&gt; 5; // 等于二进制0000 0000 0000 0000 0000 0000 0000 0010</div><div class="line">console.log(num5);    // 2</div></pre></td></tr></table></figure></p>
+<h3 id="7-无符号右移"><a href="#7-无符号右移" class="headerlink" title="7 无符号右移"></a>7 无符号右移</h3><p>无符号右移操作符由三个大于号（&gt;&gt;&gt;）表示，这个操作符会将数值的所有32位都向右移动。对正数来说，无符号右移和有符号右移结果相同。对负数来说，首先是无符号右移是以0来来填充右移过程中出现的空位，其次是无符号右移操作会把负数的二进制码当成正数的二进制码。这样导致的结果就是：由于负数以其绝对值的二进制补码形式表示，无符号右移后的结果非常之大。示例：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">let num6 = -64;</div><div class="line">let num7 = num6 &gt;&gt;&gt; 5</div><div class="line">console.log(num7); // 134217726</div></pre></td></tr></table></figure></p>
+<h2 id="三-逻辑操作符"><a href="#三-逻辑操作符" class="headerlink" title="三 逻辑操作符"></a>三 逻辑操作符</h2><p>逻辑操作符也叫布尔操作符，一共有三个：非（NOT）、与（AND）、或（OR）。</p>
+<h3 id="1-逻辑非"><a href="#1-逻辑非" class="headerlink" title="1 逻辑非"></a>1 逻辑非</h3><p>逻辑非操作符由一个叹号（！）表示，可应用于ECMAScript中任何类型的数据，返回结果都是一个布尔值。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">!123; // false</div><div class="line">!false; // true</div></pre></td></tr></table></figure></p>
+<h3 id="2-逻辑与"><a href="#2-逻辑与" class="headerlink" title="2 逻辑与"></a>2 逻辑与</h3><p>逻辑与操作符由两个和号（&amp;&amp;）表示，逻辑与的真值表如下：</p>
+<table>
+<thead>
+<tr>
+<th>第一个操作数</th>
+<th>第二个操作数</th>
+<th>结果</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>true</td>
+<td>true</td>
+<td>true</td>
+</tr>
+<tr>
+<td>true</td>
+<td>false</td>
+<td>false</td>
+</tr>
+<tr>
+<td>false</td>
+<td>true</td>
+<td>false</td>
+</tr>
+<tr>
+<td>false</td>
+<td>false</td>
+<td>false</td>
+</tr>
+</tbody>
+</table>
+<p>逻辑与操作可以应用于任何类型数据的操作。它的操作规则如下：（1）：如果第一个操作数是对象，则返回第二个操作数；（2）如果第二个操作数是对象，只有第一个操作数返回结果为true时，才返回该个对象；（3）如果两个操作数都是对象，则返回第二个操作数；（4）如果有一个操作数是null，则返回null；（5）如果有一个操作数是NaN，则返回NaN；（6）如果有一个操作数是undefined，则返回undefined。</p>
+<p>逻辑与操作属于短路操作，即如果第一个操作能够决定结果，则不进行第二个操作。</p>
+<h3 id="3-逻辑或"><a href="#3-逻辑或" class="headerlink" title="3 逻辑或"></a>3 逻辑或</h3><p>逻辑或操作符由两个竖线符号（||）表示，有两个操作数，其真值表如下所示：</p>
+<table>
+<thead>
+<tr>
+<th>第一个操作数</th>
+<th>第二个操作数</th>
+<th>结果</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>true</td>
+<td>true</td>
+<td>true</td>
+</tr>
+<tr>
+<td>true</td>
+<td>false</td>
+<td>true</td>
+</tr>
+<tr>
+<td>false</td>
+<td>true</td>
+<td>true</td>
+</tr>
+<tr>
+<td>false</td>
+<td>false</td>
+<td>false</td>
+</tr>
+</tbody>
+</table>
+<p>逻辑或的操作规则如下：（1）如果第一个操作数是对象，则返回第一个操作数；（2）如果第一个操作数的返回结果为false，则返回第二个操作数；（3）如果两个操作数都是对象，则返回第一个操作数；（4）如果两个操作数都是null，则返回null；（5）如果两个操作数都是NaN，则返回NaN；（6）如果两个操作数都是undefined，则返回undefined。</p>
+<p>和逻辑与操作符相似，逻辑或操作符也是短路操作符。我们可以利用逻辑或的特性来避免为变量赋null或undefined值：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">let info = preferredInfo || backupInfo</div></pre></td></tr></table></figure></p>
+<h2 id="四-乘性操作符"><a href="#四-乘性操作符" class="headerlink" title="四 乘性操作符"></a>四 乘性操作符</h2><p>ECMAScript定义了三个乘性操作符，分别是：乘法、除法和求模（取余）。</p>
+<h3 id="1-乘法"><a href="#1-乘法" class="headerlink" title="1 乘法"></a>1 乘法</h3><p>乘法操作符由一个星号（*）表示，用于计算两个数值的乘积。如果乘积超过了ECMAScript数值的表示范围，则返回Infinity或-Infinity。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">let result = 2 * 5;// 10</div></pre></td></tr></table></figure></p>
+<h3 id="2-除法"><a href="#2-除法" class="headerlink" title="2 除法"></a>2 除法</h3><p>除法操作符由一个斜线符号（/）表示，执行第二个操作数除第一个操作数的计算。同样的，如果商超过了ECMAScript数值的表示范围，则返回Infinity或-Infinity。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">let result = 48 / 3;// 16</div></pre></td></tr></table></figure>
+<h3 id="3-求模（取余）"><a href="#3-求模（取余）" class="headerlink" title="3 求模（取余）"></a>3 求模（取余）</h3><p>求模操作符由一个百分号（%）表示，执行第二个操作数除第一个操作数并返回余数的计算。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">let result = 16 % 3; // 1</div></pre></td></tr></table></figure>
+<h2 id="五-加性操作符"><a href="#五-加性操作符" class="headerlink" title="五 加性操作符"></a>五 加性操作符</h2><h3 id="1-加法操作符"><a href="#1-加法操作符" class="headerlink" title="1 加法操作符"></a>1 加法操作符</h3><p>加法操作符（+）用于计算两个数值的和。计算规则如下：（1）如果两个操作数都是数值，则执行常规的计算方法；（2）如果两个操作数有一个是字符串，则转成字符串后连个操作值拼接，如果两个都是字符串则直接拼接；（3）如果有一个操作数是对象、布尔，则调用他们的toString（）方法取得相应的字符串在进行拼接。示例代码：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">let result1 = 2 + 3; // 5</div><div class="line">let result2 = 2 + &quot;3&quot;; // &quot;23&quot;</div></pre></td></tr></table></figure>
+<h3 id="2-减法操作符"><a href="#2-减法操作符" class="headerlink" title="2 减法操作符"></a>2 减法操作符</h3><p>减法操作符（-）用于计算两个数值的差。计算规则如下：（1）如果两个操作数都是数值，则执行常规的计算方法；（2）如果有一个操作数是NaN，则返回NaN；（3）Infinity - Infinity = NaN，- Infinity - - Infinity = NaN，Infinity - -Infinity = Infinity， - Infinity - Infinity = Infinity；（4）如果有一个操作数是字符串、布尔、null或undefined，则先调用Number（）方法将其转成数值再进行计算；（5）如果一个操作数是对象，则先调用valueOf（）取得该对象的数值再进行计算，如果没有valueOf（）则调用toString（）并将得到的字符串转成数值再计算。示例代码：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">let result1 = 5 - true; // 4</div><div class="line">let result2 = NaN -2; // NaN</div><div class="line">let result3 = 5 - &quot;&quot;; // 5</div><div class="line">let result4 = 5 - &quot;2&quot;; // 3</div><div class="line">let result5 = 5 - null; // 5</div></pre></td></tr></table></figure>
+<h2 id="六-关系操作符"><a href="#六-关系操作符" class="headerlink" title="六 关系操作符"></a>六 关系操作符</h2><p>关系操作符用于两个数值进行比较，包括小于（&lt;）,大于（&gt;）,小于等于（&lt;=）,大于等于（&gt;=），返回结果都是一个布尔值。计算规则如下：（1）如果两个操作数都是数值，则执行数值比较；（2）如果两个操作数都是字符串，则比较两个操作数对应的字符编码值；（3）如果一个操作数是数值，则将另一个操作数转成数值再进行比较；（4）如果一个操作数是布尔，则先将其转成数值再进行比较；（5）如果一个操作数是对象，则先调用valueOf（）取得该对象的数值再进行计算，如果没有valueOf（）则调用toString（）并将得到的字符串转成数值再计算。</p>
+<h2 id="七-相等操作符"><a href="#七-相等操作符" class="headerlink" title="七 相等操作符"></a>七 相等操作符</h2><p>判断连个变量是否相等是编程中的一个非常重要的操作。ECMAScript提供了两组操作符：相等和不相等，全等和不全等。相等操作符由两个等号（==）表示，不相等操作符由叹号加等号（！=）表示，这两个操作符都会先转换操作数（通常称为强制转换），然后再进行比较。全等操作符（===）和不全等操作符（！==）则不会转换操作数类型，因此在判断式不仅比较数值是否相等，还比较类型是否一致。在实际项目开发中，为了保持代码的一致性，推荐使用全等操作符和不全等操作符。</p>
+<h2 id="八-条件操作符"><a href="#八-条件操作符" class="headerlink" title="八 条件操作符"></a>八 条件操作符</h2><p>条件操作符也叫三目运算符，其基本语法如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">let result = boolean_expression ? true_value : false_value</div></pre></td></tr></table></figure></p>
+<h2 id="九-赋值操作符"><a href="#九-赋值操作符" class="headerlink" title="九 赋值操作符"></a>九 赋值操作符</h2><p>赋值操作符由等号（=）表示，其作用是把右侧的值赋给左边的变量。如果在等号左边加上算数操作符或位操作符，就可以完成复合赋值操作（*=, /=, +=, -=等）。</p>
+<h2 id="十-逗号操作符"><a href="#十-逗号操作符" class="headerlink" title="十 逗号操作符"></a>十 逗号操作符</h2><p>使用逗号操作符可以在一条语句中执行多个操作。逗号操作符多用于声明多个变量。如下所示：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">let a = 12, b = &quot;pepsi&quot;, c = true;</div></pre></td></tr></table></figure></p>
+<p><img src="http://onjm2392k.bkt.clouddn.com/renpingjun/vgrefs548hf347hd23ie9ysh23.jpg" alt=""></p>
+</div><div class="tags"><a href="/tags/JavaScript/">JavaScript</a></div><!--暂时不展示分享功能--><!--.post-share--><!--  include _partial/share--><div class="post-nav"><a href="/2018/03/04/ss3654gddh2/" class="pre">JavaScript穷理尽微-字符串操作</a><a href="/2018/03/03/koi328d209j/" class="next">JavaScript穷理尽微-数据类型</a></div><div id="comments"></div></div></div></div><div class="layout-r"><div id="sidebar"><div class="search-pla"></div><div id="toc" class="widget"><div class="widget-title"><i class="fa fa-fei">Contents</i></div><ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#一-一元操作符"><span class="toc-text">一 一元操作符</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-递增和递减"><span class="toc-text">1 递增和递减</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-一元加和减"><span class="toc-text">2 一元加和减</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#二-位操作符"><span class="toc-text">二 位操作符</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-按位非（NOT）"><span class="toc-text">1 按位非（NOT）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-按位与（AND）"><span class="toc-text">2 按位与（AND）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-按位或（OR）"><span class="toc-text">3 按位或（OR）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-按位异或（XOR）"><span class="toc-text">4 按位异或（XOR）</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-左移"><span class="toc-text">5 左移</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-有符号右移"><span class="toc-text">6 有符号右移</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7-无符号右移"><span class="toc-text">7 无符号右移</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#三-逻辑操作符"><span class="toc-text">三 逻辑操作符</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-逻辑非"><span class="toc-text">1 逻辑非</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-逻辑与"><span class="toc-text">2 逻辑与</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-逻辑或"><span class="toc-text">3 逻辑或</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#四-乘性操作符"><span class="toc-text">四 乘性操作符</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-乘法"><span class="toc-text">1 乘法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-除法"><span class="toc-text">2 除法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-求模（取余）"><span class="toc-text">3 求模（取余）</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#五-加性操作符"><span class="toc-text">五 加性操作符</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-加法操作符"><span class="toc-text">1 加法操作符</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-减法操作符"><span class="toc-text">2 减法操作符</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#六-关系操作符"><span class="toc-text">六 关系操作符</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#七-相等操作符"><span class="toc-text">七 相等操作符</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#八-条件操作符"><span class="toc-text">八 条件操作符</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#九-赋值操作符"><span class="toc-text">九 赋值操作符</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#十-逗号操作符"><span class="toc-text">十 逗号操作符</span></a></li></ol></div><div class="widget"><div class="widget-title"><i class="fa fa-gui"> Categories</i></div><ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/JavaScript穷理尽微/">JavaScript穷理尽微</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux/">Linux</a><span class="category-list-count">4</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/开发工具/">开发工具</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/数据库/">数据库</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/面试/">面试</a><span class="category-list-count">2</span></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-biao"> Tags</i></div><div class="tagcloud"><a href="/tags/正则表达式/" style="font-size: 15px;">正则表达式</a> <a href="/tags/JavaScript/" style="font-size: 15px;">JavaScript</a> <a href="/tags/Git/" style="font-size: 15px;">Git</a> <a href="/tags/Linux/" style="font-size: 15px;">Linux</a> <a href="/tags/mysql/" style="font-size: 15px;">mysql</a> <a href="/tags/http/" style="font-size: 15px;">http</a></div></div><div class="widget"><div class="widget-title"><i class="fa fa-archive"> Archive</i></div><ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/05/">May 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/03/">March 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2018/01/">January 2018</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/10/">October 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2017/04/">April 2017</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/11/">November 2016</a></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2016/10/">October 2016</a></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-you"> Blogroll</i></div><ul><li><a href="http://jspang.com/" title="技术胖博客" target="_blank">技术胖博客</a></li></ul><ul><li><a href="https://www.liaoxuefeng.com/" title="廖雪峰的官方网站" target="_blank">廖雪峰的官方网站</a></li></ul><ul><li><a href="http://www.ruanyifeng.com/home.html" title="阮一峰的个人网站" target="_blank">阮一峰的个人网站</a></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-hit"> Segmentfault</i></div><P>&nbsp;</P><p><script src='//w.segmentfault.com/card/1030000003050718.js?w=0&3rd=0&bg=0&bd=0&cl=333333&btn=009a61&noBtn=0'></script></p></div></div></div></div><a id="totop" href="#top"></a><div id="footer"><div class="footer-info"><p><!--if theme.baidusitemap--><!--  a(href=config.root+"baidusitemap.xml")= __("baidusitemap")--><!--  |  |--><a href="/atom.xml">RSS</a> |<a href="/about/">About</a></p><!--p 本站总访问量：--><!--  i#busuanzi_container_site_pv--><!--    i#busuanzi_value_site_pv--><!--  | 次--><p>Page views over <i id="busuanzi_container_site_pv"><i id="busuanzi_value_site_pv"></i></i> times</p><p><span> Copyright &copy;<a href="/." rel="nofollow">Renpingjun.</a></span><!--span  Theme by--><span>All rights reserved</span><!--  a(rel='nofollow', target='_blank', //href='https://github.com/chaooo/hexo-theme-BlueLake')  BlueLake.--><!--if theme.busuanzi == true--><!--  span  Count by--><!--    a(href="http://busuanzi.ibruce.info/")  busuanzi.--><!--span  Powered by--><!--  a(rel='nofollow', target='_blank', href='https://hexo.io')  Hexo.--></p></div></div></div><script src="https://dn-lbstatics.qbox.me/busuanzi/2.3/busuanzi.pure.mini.js" async></script><script type="text/javascript" src="/js/search.json.js?v=2.0.1"></script><script type="text/javascript" src="/js/toctotop.js?v=2.0.1" async></script></body></html>
