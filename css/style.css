@@ -1072,6 +1072,7 @@ body {
   display: inline-block;
   vertical-align: top;
   text-align: left;
+  margin-top: 24px;
 }
 .author-page .author .fa {
   margin-right: 0.4em;
